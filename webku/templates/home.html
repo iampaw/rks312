@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <div class="cumdessert">
+        <h3>DESSERT<span>DESSERT</span></h3>
+    </div>
+
+    <div class="text-container">
+        <span class="top-text">Food tastes Better When</span><br>
+        <span class="bottom-text">You Eat it With Your Hands</span>
+    </div>
+
+    <div class="kuekue">
+        <img src="{% static 'images/images (cakecake).png' %}" alt="Cake Image"> 
+    </div>
+
+    <div class="navbar">
+        <ul class="menu">       
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#category-section">BEST SELLERS</a></li>
+            <li><a href="#category-section3">CATEGORY</a></li>
+        </ul>
+        <div class="icons">
+            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+            <span class="cart-count">0</span>
+            <!-- Check if the user is logged in -->
+            {% if user.is_authenticated %}
+                <!-- If logged in, link to a profile or logout page -->
+                <a href="{% url 'logout' %}"><i class="fa fa-user"></i> Logout</a>
+            {% else %}
+                <!-- If not logged in, link to the login page -->
+                <a href="{% url 'login' %}"><i class="fa fa-user"></i></a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="category-section" class="section-baru">
+        <h4>BEST SELLERS</h4>
+    </div>
+    
+    <div class="makanan-container">
+        <div class="makanan">
+            <img src="{% static 'images/makanan1.png' %}" alt="Best Seller 1">
+            <h1>Cookies</h1>
+            <button class="btn-add-to-card">Add to Card</button>
+        </div>
+    
+        <div class="makanan">
+            <img src="{% static 'images/makanan2.png' %}" alt="Best Seller 2">
+            <h1>Cheesecake</h2>
+            <button class="btn-add-to-card">Add to Card</button>
+        </div>
+    
+        <div class="makanan">
+            <img src="{% static 'images/makanan3.png' %}" alt="Best Seller 3">
+            <h1>Oreo Cheesecake</h1>
+            <button class="btn-add-to-card">Add to Card</button>
+        </div>
+    </div>
+    
+    <div id="category-section3" class="section3-ketiga">
+        <h3>CATEGORY</h3>
+    </div>
+</body>
+</html>

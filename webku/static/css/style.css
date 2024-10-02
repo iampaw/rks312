@@ -1,0 +1,296 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #D3EEE9;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.navbar {
+    background-color: #A1D7CD;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 120px;
+    left: 0;
+    width: 99%;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 5px;
+    font-family: 'MADE Sunflower', sans-serif;
+    position: relative;
+    left: 570px; 
+}
+
+.cart-count {
+    position: absolute;
+    top: 25px;
+    right: 85px;
+    background-color: #F2B98B;
+    color: white;
+    font-size: 14px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+}
+
+.icons a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 24px;
+    margin-left: 10px;
+    position: relative;
+    left: -40px;
+    margin-left: 20px;
+}
+
+.icons a:hover {
+    color: #F2B98B; 
+}
+
+.menu li a:hover {
+    color: #F2B98B; 
+}
+
+
+.cumdessert {
+    position: relative; 
+    text-align: center; 
+    padding: 50px 0; 
+    margin-bottom: 30px;
+    top: -40px;
+}
+
+.cumdessert h3 {
+    font-size: 40px; 
+    color: #F2B98B; 
+    font-weight: bold; 
+    font-family: 'MADE Sunflower', sans-serif;
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    margin: 0; 
+    line-height: 1.2; 
+}
+
+.cumdessert h3 span {
+    display: block; 
+    font-size: 40px; 
+}
+
+
+.text-container {
+    position: absolute; 
+    top: 60%; 
+    left: 30%; 
+    transform: translate(-50%, -50%); 
+    text-align: center;
+    font-family: 'MADE Sunflower', serif;
+}
+
+.top-text, .bottom-text {
+    font-size: 50px;
+    color: #659A84;
+}
+
+.top-text {
+    margin-bottom: 10px;
+}
+
+.bottom-text {
+    margin-top: 10px;
+}
+
+.kuekue img {
+    width: 450px; 
+    height: auto; 
+    position: relative;
+    left: 870px;
+    top: -50px;   
+}
+
+
+.shape1 img {
+    width: 10em; 
+    position: relative;
+    left: 1em;
+    top: -200em;   
+}
+
+/****************************************************************************************************/
+
+.section-baru {
+    margin-top: 50px;
+    text-align: center;
+    padding: 300px;
+    background-color: #FEE3EA;
+}
+
+.section-baru h4 {
+    font-size: 40px; 
+    color: #F2B98B; 
+    font-weight: bold; 
+    font-family: 'MADE Sunflower', sans-serif;
+    position: relative;
+    top: -280px;
+}
+
+.section-baru h5 {
+    color: #ffffff;
+    font-size: 40px;
+    font-family: 'MADE Sunflower', serif;
+    position: relative;
+    top: -800px;
+}
+
+
+/* Style untuk section Best Sellers */
+.section-baru {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-baru h4 {
+    font-family: 'MADE Sunflower', sans-serif;
+    font-size: 36px;
+    color: #77ADA3;
+}
+
+/* Container flexbox untuk makanan */
+.makanan-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 20px;
+    position: relative;
+    top: -620px;
+}
+
+.makanan {
+    text-align: center;
+    background-color: #F8F0E8; /* Warna latar belakang */
+    padding: 20px; /* Memberikan ruang di sekitar elemen di dalamnya */
+    border-radius: 15px; /* Membuat sudut yang melengkung */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan efek bayangan */
+    margin: 20px; /* Memberi jarak antar item */
+    max-width: 300px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.makanan:hover {
+    background-color: #EDE0D0; /* Warna latar saat di-hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Menambahkan bayangan lebih besar */
+}
+
+.makanan img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.makanan h1 {
+    font-size: 24px;
+    color: #77ADA3;
+    font-weight: bold;
+    font-family: 'MADE Sunflower', sans-serif;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.btn-add-to-card {
+    background-color: #d3d3d3;
+    border: none;
+    color: #699a8c;
+    font-size: 15px;
+    font-family: 'MADE Sunflower', sans-serif;
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    left: -75px; /* Center the button */
+}
+
+.btn-add-to-card:hover {
+    background-color: #c0c0c0;
+}
+
+
+.btn-add-to-card:hover {
+    background-color: #c0c0c0;
+}
+
+/* Style untuk section Category */
+.section3-ketiga {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.section3-ketiga h3 {
+    font-family: 'MADE Sunflower', sans-serif;
+    font-size: 36px;
+    color: #77ADA3;
+}
+
+
+.section3-ketiga {
+    margin-top: -210px;
+    text-align: center;
+    padding: 180px;
+    background-color: #D3EEE9;
+    top: -10px;
+}
+
+
+.section3-ketiga h3 {
+    font-size: 40px; 
+    color: #F2B98B; 
+    font-weight: bold; 
+    font-family: 'MADE Sunflower', sans-serif;
+    position: relative;
+    top: -450px;
+}
+
+
+.product-card {
+    background-color: #f5e8de;
+    border-radius: 20px;
+    width: 250px;
+    padding: 40px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin: 0 auto;
+    top: -1500px;
+    z-index: 10; 
+    margin: 0 auto;
+    
+    
+}
+
+
+  
+
+  

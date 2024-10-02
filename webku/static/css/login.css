@@ -1,0 +1,105 @@
+body {
+    background-image: url('http://localhost:8000/static/images/Tampilan.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.9); 
+    padding: 40px;
+    border-radius: 10px;    
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #333;
+    position: relative;
+    top: -20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    position: relative;
+    top: -10px;
+    left: -10px;
+}
+
+.input-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6f61; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    top: 10px;
+}
+
+.input-group button:hover {
+    background-color: #ff4b3a; 
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.options a {
+    color: #007bff; 
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+p {
+    margin-top: 15px;
+}
+
+.register-link {
+    color: rgb(0, 0, 0);
+}
+
+.register-link:hover {
+    color: red; 
+}
+
+p {
+    position: relative;
+    top: 20px;    
+    left: -15px;   
+}
+
+.input-group i {
+    position: absolute;
+    top: 340px; /* Atur posisi vertikal */
+    right: 620px; /* Atur posisi horizontal dari sisi kanan */
+    cursor: pointer; /* Menunjukkan bahwa ini bisa diklik */
+    color: #333; /* Warna ikon */
+    font-size: 18px; /* Ukuran ikon */
+}
+
+
+
+

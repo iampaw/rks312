@@ -1,0 +1,10 @@
+body {
+    background-image: url('http://localhost:8000/static/images/Tampilan.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
