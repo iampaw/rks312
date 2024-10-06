@@ -1,5 +1,5 @@
 body {
-    background-image: url('https://effective-telegram-7vr6v4jwpx4ghp45-8000.app.github.dev/static/images/Tampilan.jpg');
+    background-image: url('/static/images/Tampilan.jpg');
     background-size: cover;
     display: flex;
     justify-content: center;
