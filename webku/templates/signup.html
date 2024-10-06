@@ -10,7 +10,7 @@
 	<div class="main">  	
 		<input type="checkbox" id="chk" aria-hidden="true">
 			<div class="signup">
-				<form method="POST" action="{% url 'register' %}">
+				<form method="POST" action="{% url 'signup' %}">
 					{% csrf_token %}
 					<label for="chk" aria-hidden="true">Sign up</label>
 					<input type="text" name="username" placeholder="Username" required="">
@@ -30,6 +30,7 @@
 					<button>Login</button>
 				</form>
 			</div>
+			
 	</div>
 </body>
 </html>

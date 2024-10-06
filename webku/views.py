@@ -16,9 +16,9 @@ def login_view(request):
             return redirect('home')  # Redirect to home after successful login
         else:
             messages.error(request, 'Invalid username or password')
-    return render(request, 'login.html')
+    return render(request, 'signup.html')
 
-def register(request):
+def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
