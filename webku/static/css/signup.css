@@ -6,10 +6,10 @@ body{
 	align-items: center;
 	min-height: 100vh;
 	font-family: 'Jost', sans-serif;
-	background: linear-gradient(to bottom, #5593a6, #7f7d90, #8f7171);
+	background: linear-gradient(to bottom, #3f4761, #7f7d90, #8f7171);
 }
 .main{
-	width: 350px;
+	width: 450px;
 	height: 500px;
 	background: red;
 	overflow: hidden;
