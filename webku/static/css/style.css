@@ -38,8 +38,8 @@ html {
     font-size: 15px;
     padding: 5px;
     font-family: 'MADE Sunflower', sans-serif;
-    position: relative;
-    left: 570px; 
+    position:relative;
+    margin: auto;
 }
 
 .cart-count {
@@ -335,6 +335,27 @@ html {
 .checkout-btn {
     background-color: #f1c40f;
 }
-  
 
-  
+@media screen and (max-width: 768px) {
+    .menu {
+        display: none; /* Sembunyikan menu besar */
+        flex-direction: c
+        olumn;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: black; /* Tambahkan background pada menu dropdown */
+    }
+
+    .menu.active {
+        display: block; /* Tampilkan menu saat toggle aktif */
+    }
+
+    .menu-toggle {
+        display: flex; /* Untuk memastikan span di dalamnya ditampilkan */
+        flex-direction: column; /* Mengatur bar menjadi kolom */
+        cursor: pointer; /* Menampilkan cursor pointer */
+    }
+
+}
