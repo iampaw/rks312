@@ -44,7 +44,7 @@ html {
 
 .cart-count {
     position: absolute;
-    top: 25px;
+    top: 15px;
     background-color: #F2B98B;
     color: white;
     font-size: 14px;
@@ -52,6 +52,7 @@ html {
     border-radius: 50%;
     font-family: 'Arial', sans-serif;
     font-weight: bold;
+    left: 43px;
 }
 .icons {
     position:absolute;
@@ -70,8 +71,9 @@ html {
     color: #F2B98B; 
 }
 .search{
-    position:absolute;
-    right: 100px;
+    position: relative;
+    right: 80px;
+    border-radius: 50px;
 }
 .menu li a:hover {
     color: #F2B98B; 
@@ -126,12 +128,15 @@ html {
 }
 
 .kuekue img {
-    width: 450px; 
-    height: auto; 
+    width: 100%; /* Gambar akan menyesuaikan dengan lebar kontainer */
+    max-width: 450px; /* Maksimal lebar gambar, agar tidak terlalu besar */
+    height: auto; /* Mengatur tinggi secara otomatis berdasarkan lebar gambar */
     position: relative;
-    left: 870px;
-    top: -50px;   
+    left: 980px; /* Menghapus positioning absolut */
+    top: 0; /* Menghapus positioning absolut */
+    margin: 0 auto; /* Pusatkan gambar jika perlu */
 }
+
 
 
 .shape1 img {
@@ -178,6 +183,17 @@ html {
     font-family: 'MADE Sunflower', sans-serif;
     font-size: 36px;
     color: #77ADA3;
+}
+
+/* Styling dasar untuk container makanan */
+.makanan-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Agar elemen berada di tengah */
+    gap: 20px; /* Jarak antar item */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* Agar container berada di tengah halaman */
 }
 
 /* Container flexbox untuk makanan */
@@ -246,6 +262,24 @@ html {
 .btn-add-to-card:hover {
     background-color: #c0c0c0;
 }
+
+/* Responsif untuk layar kecil seperti ponsel */
+@media (max-width: 768px) {
+    .makanan {
+        flex: 1 1 100%; /* Agar elemen makanan mengambil seluruh lebar layar di ponsel */
+        max-width: none;
+    }
+}
+
+/* Efek hover untuk item makanan */
+.makanan:hover {
+    background-color: #FFF2E3; /* Warna latar belakang saat dihover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Menambahkan bayangan lebih besar */
+}
+
+
+
+
 
 /* Style untuk section Category */
 .section3-ketiga {
@@ -409,6 +443,48 @@ html {
 }
 
 
+/* CSS untuk dropdown profil */
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-dropdown-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* Ubah posisi dropdown ke sebelah kiri */
+.profile-dropdown-list {
+    display: none; /* Sembunyikan daftar dropdown secara default */
+    position: absolute;
+    left: 0; /* Letakkan di sebelah kiri */
+    background-color: white; /* Latar belakang putih */
+    min-width: 200px; /* Lebar minimum untuk dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan */
+    z-index: 1; /* Pastikan dropdown di atas konten lain */
+    border-radius: 5px; /* Tambahkan sudut melengkung */
+    overflow: hidden; /* Sembunyikan bagian yang melampaui batas */
+}
+
+/* Gaya untuk item dropdown */
+.profile-dropdown-list-item {
+    padding: 10px; /* Ruang dalam item */
+    display: flex; /* Flexbox untuk ikon dan teks */
+    align-items: center; /* Pusatkan vertikal */
+    cursor: pointer; /* Pointer pada hover */
+}
+
+/* Gaya saat hover */
+.profile-dropdown-list-item:hover {
+    background-color: #f1f1f1; /* Warna latar belakang saat hover */
+}
+
+/* Untuk menutup dropdown saat di luar diklik */
+.profile-dropdown-list.show {
+    display: block; /* Tampilkan dropdown jika class 'show' ditambahkan */
+}
 
 
 
