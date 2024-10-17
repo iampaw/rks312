@@ -38,12 +38,9 @@
         <div class="icons">
             <a href="#"><i class="fa fa-shopping-cart"></i></a>
             <span class="cart-count">0</span>
-            <!-- Check if the user is logged in -->
             {% if user.is_authenticated %}
-                <!-- If logged in, link to a profile or logout page -->
-                <a href="{% url 'logout ' %}"><i class="fa fa-user"></i> Logout</a>
+                <a href="{% url 'logout' %}"><i class="fa fa-user"></i> Logout</a>
             {% else %}
-                <!-- If not logged in, link to the login page -->
                 <a href="{% url 'signup' %}"><i class="fa fa-user"></i></a>
             {% endif %}
         </div>
@@ -54,6 +51,7 @@
             </form>
         </div>
     </div>
+
     <script>
         const menuToggle = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.menu');
@@ -66,68 +64,64 @@
     <div id="category-section" class="section-baru">
         <h4>BEST SELLERS</h4>
     </div>
-    
-    <div>
+
     <div class="makanan-container">
-        <div class="makanan">
-            <img src="{% static 'images/makanan1.png' %}" alt="Best Seller 1">
-            <h1>Cookies</h1>
-            <button class="btn-add-to-card">Add to Card</button>
-        </div>
-        <div class="makanan">
-            <img src="{% static 'images/makanan2.png' %}" alt="Best Seller 2">
-            <h1>Cheesecake</h2>
-            <button class="btn-add-to-card">Add to Card</button>
-        </div>
-        <div class="makanan">
-            <img src="{% static 'images/makanan3.png' %}" alt="Best Seller 3">
-            <h1>Oreo Cheesecake</h1>
-            <button class="btn-add-to-card">Add to Card</button>
-        </div>
+        {% for makanan in makanan_list %}
+            <div class="makanan">
+                <img src="{% static 'images/' %}{{ makanan.gambar }}" alt="{{ makanan.nama_menu }}">
+                <h1>{{ makanan.nama_menu }}</h1>
+                <p>Price: ${{ makanan.harga }}</p>
+                <button class="btn-add-to-card">Add to Cart</button>
+            </div>
+        {% endfor %}
     </div>
-</nav>          
 
     <div id="category-section3" class="section3-ketiga">
         <h3>CATEGORY</h3>
     </div>
-    <!-- Shopping Cart Sidebar --> 
-    <div id="shoppingCart" class="cart-sidebar">
-        <h2>Shopping Cart</h2>
-        <div class="cart-items">
-        <!-- Isi keranjang belanja akan ditampilkan di sini -->
+    <div>
+        <div id="category-section3" class="section3-ketiga">
+            <h3>CATEGORY</h3>
         </div>
-        <div class="cart-footer">
-            <button class="close-btn">CLOSE</button>
-            <button class="checkout-btn">Check Out</button>
-        </div>
-
-        <script>
-            // Ambil elemen keranjang belanja
-            var shoppingCart = document.getElementById("shoppingCart");
-            
-            // Ambil ikon keranjang belanja
-            var cartIcon = document.querySelector(".fa-shopping-cart");
-            
-            // Ambil tombol tutup di keranjang belanja
-            var closeBtn = document.querySelector(".close-btn");
-            
-            // Fungsi untuk menampilkan keranjang belanja
-            cartIcon.onclick = function() {
-                shoppingCart.style.right = "0"; // Tampilkan dari sisi kanan
-            }
-            
-            // Fungsi untuk menutup keranjang belanja
-            closeBtn.onclick = function() {
-                shoppingCart.style.right = "-100%"; // Sembunyikan ke sisi kanan
-            }
-            
-            // Jika pengguna mengklik di luar keranjang, tutup keranjang
-            window.onclick = function(event) {
-                if (event.target == shoppingCart) {
-                    shoppingCart.style.right = "-100%";
+        <!-- Shopping Cart Sidebar --> 
+        <div id="shoppingCart" class="cart-sidebar">
+            <h2>Shopping Cart</h2>
+            <div class="cart-items">
+            <!-- Isi keranjang belanja akan ditampilkan di sini -->
+            </div>
+            <div class="cart-footer">
+                <button class="close-btn">CLOSE</button>
+                <button class="checkout-btn">Check Out</button>
+            </div>
+    
+            <script>
+                // Ambil elemen keranjang belanja
+                var shoppingCart = document.getElementById("shoppingCart");
+                
+                // Ambil ikon keranjang belanja
+                var cartIcon = document.querySelector(".fa-shopping-cart");
+                
+                // Ambil tombol tutup di keranjang belanja
+                var closeBtn = document.querySelector(".close-btn");
+                
+                // Fungsi untuk menampilkan keranjang belanja
+                cartIcon.onclick = function() {
+                    shoppingCart.style.right = "0"; // Tampilkan dari sisi kanan
                 }
-            }
-            </script>
+                
+                // Fungsi untuk menutup keranjang belanja
+                closeBtn.onclick = function() {
+                    shoppingCart.style.right = "-100%"; // Sembunyikan ke sisi kanan
+                }
+                
+                // Jika pengguna mengklik di luar keranjang, tutup keranjang
+                window.onclick = function(event) {
+                    if (event.target == shoppingCart) {
+                        shoppingCart.style.right = "-100%";
+                    }
+                }
+                </script>
+        </div>
     </div>
 </body>
 </html>
