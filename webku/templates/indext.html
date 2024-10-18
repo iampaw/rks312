@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce | RKS-312</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <header class="title">DESSERT<br>MENU</header>
@@ -27,8 +27,8 @@
             </div>
             <div class="header-icon">
                 <a href="/signup" id="account-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="rgb(103, 60, 0)" class="bi bi-person-fill-check" viewBox="0 0 16 16">
-                        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="rgb(103, 60, 0)" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+                        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                         <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
                     </svg>
                 </a> 
@@ -76,23 +76,16 @@
     <div class="description">
         <p>Food tastes Better When<br>You Eat it With Your Hands</p>
         <div class="kuekue">
-            <img src="{% static 'images/images (cakecake).png' %}" width="350px" alt="Cake Image"> 
+            <img src="/static/images/dessert1.png" width="250px" alt="Cake Image"> 
         </div>
     </div>
  
     <div id="category-section" class="section-baru">
         <h4>BEST SELLERS</h4>
     </div>
-    <div class="makanan-container">
-        {% for makanan in makanan_list %}
-            <div class="makanan">
-                <img src="{{ makanan.gambar.url }}" alt="{{ makanan.nama_menu }}">
-                <h1>{{ makanan.nama_menu }}</h1>
-                <p>Price: ${{ makanan.harga }}</p>
-                <button class="btn-add-to-card">Add to Cart</button>
-            </div>
-        {% endfor %}
-    </div>
+    
+    
+        
     </div>
     <div id="category-section2" class="section2-kedua">
         <h3>CATEGORY</h3>
@@ -104,3 +97,16 @@
      </div>
 </body>
 </html>
+
+
+
+<div class="makanan-container">
+    {% for makanan in makanan_list %}
+        <div class="makanan">
+            <img src="{% static 'images/' %}{{ makanan.gambar }}" alt="{{ makanan.nama_menu }}">
+            <h1>{{ makanan.nama_menu }}</h1>
+            <p>Price: ${{ makanan.harga }}</p>
+            <button class="btn-add-to-card">Add to Cart</button>
+        </div>
+    {% endfor %}
+</div>

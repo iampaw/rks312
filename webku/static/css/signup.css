@@ -5,28 +5,37 @@ body{
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	font-family: 'Jost', sans-serif;
-	background: linear-gradient(to bottom, #3f4761, #7f7d90, #8f7171);
+	font-family:'Lucida Sans';
+	background: linear-gradient(to bottom, rgb(195,176,145), rgb(160, 93, 0), rgb(244, 219, 166));
 }
 .main{
 	width: 450px;
 	height: 500px;
-	background: red;
+	background: transparent;
 	overflow: hidden;
-	background: url("/static/images/Tampilan.jpg") no-repeat center/ cover;
 	border-radius: 10px;
 	box-shadow: 5px 20px 50px #000;
 }
 #chk{
 	display: none;
 }
+.main {
+    min-height: 600px; /* Sesuaikan dengan tinggi konten */
+}
+.signup, .login {
+    height: auto;
+    min-height: 600px; /* Atau sesuai kebutuhan */
+}
+
 .signup{
 	position: relative;
 	width:100%;
-	height: 100%;
+}
+.signup input::placeholder{
+	color: rgb(0, 0, 0);
 }
 label{
-	color: #fff;
+	color: rgb(103, 60, 0);
 	font-size: 2.3em;
 	justify-content: center;
 	display: flex;
@@ -38,12 +47,12 @@ label{
 input{
 	width: 60%;
 	height: 10px;
-	background: #e0dede;
+	background: transparent;
 	justify-content: center;
 	display: flex;
-	margin: 20px auto;
+	margin: 18px auto;
 	padding: 12px;
-	border: none;
+    border: 2px solid rgb(103, 60, 0);
 	outline: none;
 	border-radius: 5px;
 }
@@ -53,8 +62,8 @@ button{
 	margin: 10px auto;
 	justify-content: center;
 	display: block;
-	color: #fff;
-	background: #573b8a;
+	color: rgb(244, 219, 166);
+	background: rgb(103, 60, 0);
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 30px;
@@ -67,15 +76,47 @@ button{
 button:hover{
 	background: #6d44b8;
 }
+
+.form-row {
+    display: flex;
+	height: 30px;
+    align-items: center; /* Menyelaraskan elemen secara vertikal */
+    justify-content: flex-start; /* Menyelaraskan elemen ke kiri */
+    gap: 5px; /* Memberikan jarak antar elemen */
+}
+
+.form-row label {
+	color: rgb(103, 60, 0);
+	margin: 0;
+	margin-left: 50px;
+    width: 40%;
+	left: 0%;
+	font-size: 20px;
+}
+
+.form-row select {
+    width: 30%; /* Lebar dropdown select */
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid rgb(103, 60, 0);
+	background: transparent;
+}
+
 .login{
-	height: 460px;
-	background: #eee;
+	background: rgb(244, 219, 166);
 	border-radius: 60% / 10%;
 	transform: translateY(-180px);
 	transition: .8s ease-in-out;
 }
+
+.login a{
+	color: rgb(103, 60, 0);
+	text-decoration: none;
+	margin-left: 90px;
+}
+
 .login label{
-	color: #573b8a;
+	color: rgb(103, 60, 0);
 	transform: scale(.6);
 }
 
@@ -84,7 +125,4 @@ button:hover{
 }
 #chk:checked ~ .login label{
 	transform: scale(1);	
-}
-#chk:checked ~ .signup label{
-	transform: scale(.6);
 }
