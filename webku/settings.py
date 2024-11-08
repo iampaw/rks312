@@ -56,9 +56,9 @@ ROOT_URLCONF = 'webku.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'webku', 'templates')],
         'APP_DIRS': True,
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -76,19 +76,20 @@ WSGI_APPLICATION = 'webku.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# settings.py
-
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'secondary': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Databaserks312',
+        'NAME': 'databaserks312',
         'USER': 'rks312',
         'PASSWORD': 'rks312',
         'HOST': 'localhost',
-        'PORT': '3306',  # Default MySQL port
+        'PORT': '3306',
     }
 }
-
 
 
 # Password validation
@@ -126,13 +127,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'webku/static']
+STATICFILES_DIRS = [BASE_DIR / 'static']
+LOGIN_REDIRECT_URL = 'home'  # Redirect to 'home' after login
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-

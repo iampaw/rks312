@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from .models import Makanan
 
+
 def home(request):
     return render(request, 'home.html')  # Pastikan Anda memiliki template 'home.html'
 
@@ -44,3 +45,4 @@ def home_page(request):
         'makanan_list': makanan_list,
     }
     return render(request, 'home.html', context)
+
