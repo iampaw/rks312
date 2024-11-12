@@ -7,14 +7,18 @@
 }
 /*==============body================*/
 body {
-    color: rgb(103, 60, 0);
+    color: rgb(61, 56, 56);
     margin: auto;
     font-family: 'MADE Sunflower', sans-serif;
     overflow: auto;
-    background: linear-gradient(315deg, rgb(195,176,145) 3%, rgb(160, 93, 0) 38%, rgb(244, 219, 166) 68%, rgb(227, 144, 0) 98%);
+    background-color: #93AEC1;
     animation: gradient 15s ease infinite;
     background-size: 400% 400%;
     background-attachment: fixed;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 /*================background===============*/
@@ -31,53 +35,7 @@ body {
     }
 }
 
-.wave {
-    background: rgb(244, 219, 166);
-    border-radius: 1000% 1000% 0 0;
-    position: fixed;
-    width: 200%;
-    height: 8em;
-    animation: wave 10s -3s linear infinite;
-    transform: translate3d(0, 0, 0);
-    opacity: 0.8;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-}
 
-.wave:nth-of-type(2) {
-    bottom: -1.25em;
-    animation: wave 18s linear reverse infinite;
-    opacity: 0.8;
-}
-
-.wave:nth-of-type(3) {
-    bottom: -2.5em;
-    animation: wave 20s -1s reverse infinite;
-    opacity: 0.9;
-}
-
-@keyframes wave {
-    2% {
-        transform: translateX(1);
-    }
-
-    25% {
-        transform: translateX(-25%);
-    }
-
-    50% {
-        transform: translateX(-50%);
-    }
-
-    75% {
-        transform: translateX(-25%);
-    }
-
-    100% {
-        transform: translateX(1);
-    }
-}
 
 /*==============judul dan deskripsi================*/
 
@@ -95,6 +53,7 @@ body {
     display: flex;
     position: relative;
     top: 30px;
+    color: #699a8c;
 }
 
 /*================ICON==========================*/
@@ -102,18 +61,22 @@ body {
 .header-icon {
     text-align: right;
     margin: 20px;
+    position: relative;
 
 }
 
 /*======================NAVBAR=========================*/
 
-.navbar .container {
-    background: transparent;
-    display: flex;
-    justify-content: space-between; /* Membuat logo, menu, dan ikon cart berjarak */
-    align-items: center; /* Menjaga semua elemen sejajar secara vertikal */
-    padding: 10px 10px; /* Tambahkan padding sesuai kebutuhan */
+.navbar {
+    position: -webkit-sticky; /* Untuk browser lama */
+    position: sticky;
+    top: 0; /* Tetap berada di bagian atas */
+    z-index: 1000;
+    background-color: #93AEC1;
+    transition: box-shadow 0.3s ease; /* Efek transisi untuk box-shadow */
+    box-shadow: none; /* Awalnya tidak ada box-shadow */
 }
+
 
 .nav-links{
     list-style: none;
@@ -123,6 +86,9 @@ body {
 
 .nav-links li{
     margin-left: 20px;
+    position: relative;
+    left: 10px;
+    top: 30px;
 }
 
 .nav-links a{
@@ -132,17 +98,18 @@ body {
 
 .nav-links input[type="text"]{
     background: rgba(113, 47, 0, 0.212);
-    color: #a7ffd6;
-    border-color: #a7ffd6;
+    color: #ffffff;
+    border-color: #ffffff;
     float: right;
     padding: 1px;
     border: 2px solid transparent;
     border-radius: 10px;
     outline: none;
     position: relative;
-    margin-top: 4px;
+    margin-top: 8px;
     margin-left: 40px;
     font-size: 17px;
+    top: 28px;
 }
 
 .nav-links input[type="text"]::placeholder {
@@ -154,23 +121,6 @@ body {
     border-color: rgb(255, 0, 0);
 }
 
-@keyframes borderAnimation {
-    0% {
-        border-color: rgb(195,176,145);
-    }
-    25% {
-        border-color: rgb(160, 93, 0);
-    }
-    50% {
-        border-color: rgb(244, 219, 166);
-    }
-    75% {
-        border-color: rgb(227, 144, 0);
-    }
-    100% {
-        border-color: rgb(78, 237, 255);
-    }
-}
 
 .nav-links input[type="text"]:focus {
     animation: borderAnimation 2s infinite; /* Sesuaikan durasi animasi sesuai kebutuhan */
@@ -191,15 +141,14 @@ body {
     display: flex;
     justify-content:center;
     flex-wrap: wrap;
-    margin: 20px;
+    margin: 100px;
 }
 
 .section-baru{
     text-align: center;
-    padding: 25px;
     font-size: 50px;
     position: relative;
-    top: 250px;
+    top: 100px;
 }
 
 /*=====================cart============================*/
@@ -308,7 +257,7 @@ body {
     margin: 20px; /* Memberi jarak antar item */
     max-width: 300px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    top: 300px;
+    top: 230px;
 }
 
 .makanan img {
