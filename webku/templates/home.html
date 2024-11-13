@@ -17,7 +17,7 @@
                 <li><a href="#">About</a></li>
                 <li><a href="#category-section">Best Seller</a></li>
                 <li><a href="#category-section2">Category</a></li>
-                <input type="text" placeholder="Search..">
+                <input type="text" id="searchInput" placeholder="Search..">
             </ul>
             <div class="menu-toggle" id="mobile-menu">
                 <span class="bar"></span>
@@ -86,18 +86,56 @@
     <!-- Bagian makanan -->
     <div class="makanan-container">
         {% for makanan in makanan_list %}
-            <div class="makanan">
+            <div class="makanan" id="makanan-{{ forloop.counter }}">
                 <img src="{{ makanan.gambar.url }}" alt="{{ makanan.nama_menu }}">
-                <h1>{{ makanan.nama_menu }}</h1>
+                <h1 class="makanan-name">{{ makanan.nama_menu }}</h1>
                 <p>Price: ${{ makanan.harga }}</p>
                 <button class="btn-add-to-card">Add to Cart</button>
             </div>
         {% endfor %}
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const makananList = document.querySelectorAll('.makanan');
+            
+            // Event listener untuk input pencarian
+            searchInput.addEventListener('input', function() {
+                const query = searchInput.value.toLowerCase();
+    
+                // Mencari makanan yang sesuai dengan input pengguna
+                makananList.forEach(makanan => {
+                    const makananName = makanan.querySelector('.makanan-name').textContent.toLowerCase();
+    
+                    if (makananName.includes(query)) {
+                        // Menggulung halaman ke posisi makanan yang ditemukan
+                        makanan.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        makanan.style.border = '2px solid rgb(103, 60, 0)'; // Highlight makanan
+                    } else {
+                        makanan.style.border = 'none'; // Menghapus highlight jika tidak cocok
+                    }
+                });
+            });
+        });
+    </script>
 </div>
     <div id="category-section2" class="section2-kedua">
         <h3>CATEGORY</h3>
     </div>
+
+    <!-- Bagian makanan -->
+    <div class="makanan2-category">
+        {% for makanan2 in makanan2_list %}
+            <div class="makanan2">
+                <img src="{{ makanan2.gambar.url }}" alt="{{ makanan2.nama_category }}">
+                <h1>{{ makanan2.nama_category }}</h1>
+                <p>Price: ${{ makanan2.harga }}</p>
+                <button class="btn-add-to-card">Add to Cart</button>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
     <script>
         window.addEventListener("scroll", function() {
             const navbar = document.querySelector(".navbar");

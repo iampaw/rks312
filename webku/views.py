@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
-from .models import Makanan
+from .models import Makanan, makanan2
 
 
 def home(request):
@@ -41,8 +41,10 @@ def logout_view(request):
 
 def home_page(request):
     makanan_list = Makanan.objects.all()  # Ambil semua data makanan dari database
+    makanan2_list = makanan2.objects.all() 
     context = {
         'makanan_list': makanan_list,
+        'makanan2_list': makanan2_list,
     }
     return render(request, 'home.html', context)
 

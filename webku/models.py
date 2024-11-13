@@ -9,3 +9,11 @@ class Makanan(models.Model):
 
     def __str__(self):
         return self.nama_menu
+
+class makanan2(models.Model):
+    nama_category = models.CharField(max_length=100)
+    harga = models.DecimalField(max_digits=10, decimal_places=2)
+    gambar = models.ImageField(upload_to='category_makanan/')
+
+    def __str__(self):
+        return self.nama_category

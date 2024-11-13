@@ -126,6 +126,18 @@ html {
     animation: borderAnimation 2s infinite; /* Sesuaikan durasi animasi sesuai kebutuhan */
 }
 
+@keyframes borderAnimation {
+    0%{
+        border-color: #5ff9cd;
+    }
+    50%{
+        border-color: #93AEC1;
+    }
+    100%{
+        border-color: #EDE0D0;
+    }
+}
+
 .menu-toggle {
     flex-direction: column; /* Mengatur bar menjadi kolom */
 }
@@ -149,6 +161,7 @@ html {
     font-size: 50px;
     position: relative;
     top: 100px;
+    padding-top: 130px;
 }
 
 /*=====================cart============================*/
@@ -257,7 +270,7 @@ html {
     margin: 20px; /* Memberi jarak antar item */
     max-width: 300px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    top: 230px;
+    top: 80px;
 }
 
 .makanan img {
@@ -298,11 +311,70 @@ html {
 }
 
 /*=================section2===============*/
-.section2-kedua{
-    text-align:center ;
-    padding: 25px;
+.section2-kedua {
+    text-align: center;
+    padding-bottom: 500px; /* Mengurangi jarak bawah */
     font-size: 50px;
-    top: 840px;
     position: relative;
+    top: 400px; /* Mengembalikan posisi ke atas */
+}
 
+/*=================category makanan2===============*/
+
+.makanan2-category{
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    margin: 100px;
+}
+
+.makanan2 {
+    position: relative;
+    text-align: center;
+    background-size: 20px;
+    background-color: #F8F0E8; /* Warna latar belakang */
+    padding: 20px; /* Memberikan ruang di sekitar elemen di dalamnya */
+    border-radius: 15px; /* Membuat sudut yang melengkung */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan efek bayangan */
+    margin: 20px; /* Memberi jarak antar item */
+    max-width: 300px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    top: 80px;
+}
+
+.makanan2 img {
+    width: 100%; /* Atur lebar gambar menjadi 100% dari elemen induknya */
+    height: 180px; /* Mempertahankan rasio aspek gambar */
+    max-width: 200px; /* Atur lebar maksimum jika diperlukan */
+    border-radius: 10px; /* Tambahkan sudut melengkung pada gambar jika diinginkan */
+}
+
+
+.makanan2:hover {
+    background-color: #EDE0D0; /* Warna latar saat di-hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Menambahkan bayangan lebih besar */
+}
+
+.btn-add-to-card {
+    background-color: #d3d3d3;
+    border: none;
+    color: #699a8c;
+    font-size: 12px;
+    font-family: 'MADE Sunflower', sans-serif;
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    left: -75px; /* Center the button */
+}
+
+.btn-add-to-card:hover {
+    background-color: #c0c0c0;
+}
+
+
+.btn-add-to-card:hover {
+    background-color: #c0c0c0;
 }

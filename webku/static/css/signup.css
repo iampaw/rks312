@@ -6,12 +6,12 @@ body{
 	align-items: center;
 	min-height: 100vh;
 	font-family:'Lucida Sans';
-	background: linear-gradient(to bottom, rgb(195,176,145), rgb(160, 93, 0), rgb(244, 219, 166));
+	background: #93AEC1;
 }
 .main{
 	width: 450px;
 	height: 500px;
-	background: transparent;
+	background: #ffff;
 	overflow: hidden;
 	border-radius: 10px;
 	box-shadow: 5px 20px 50px #000;
@@ -32,10 +32,10 @@ body{
 	width:100%;
 }
 .signup input::placeholder{
-	color: rgb(0, 0, 0);
+	color: #c0c0c0;
 }
 label{
-	color: rgb(103, 60, 0);
+	color: #000000;
 	font-size: 2.3em;
 	justify-content: center;
 	display: flex;
@@ -52,7 +52,7 @@ input{
 	display: flex;
 	margin: 18px auto;
 	padding: 12px;
-    border: 2px solid rgb(103, 60, 0);
+    border: 2px solid #753c00;
 	outline: none;
 	border-radius: 5px;
 }
@@ -62,8 +62,8 @@ button{
 	margin: 10px auto;
 	justify-content: center;
 	display: block;
-	color: rgb(244, 219, 166);
-	background: rgb(103, 60, 0);
+	color: #ffff;
+	background: #ec6a52;
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 30px;
@@ -74,7 +74,7 @@ button{
 	cursor: pointer;
 }
 button:hover{
-	background: #6d44b8;
+	background: #ed7863
 }
 
 .form-row {
@@ -86,7 +86,7 @@ button:hover{
 }
 
 .form-row label {
-	color: rgb(103, 60, 0);
+	color: #c0c0c0;
 	margin: 0;
 	margin-left: 50px;
     width: 40%;
@@ -103,7 +103,7 @@ button:hover{
 }
 
 .login{
-	background: rgb(244, 219, 166);
+	background: #9DBDBA;
 	border-radius: 60% / 10%;
 	transform: translateY(-180px);
 	transition: .8s ease-in-out;
@@ -116,8 +116,10 @@ button:hover{
 }
 
 .login label{
-	color: rgb(103, 60, 0);
+	color: rgb(0, 0, 0);
 	transform: scale(.6);
+	position: relative;
+	top: 20px;
 }
 
 #chk:checked ~ .login{
