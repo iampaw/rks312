@@ -17,6 +17,7 @@
                 <li><a href="#">About</a></li>
                 <li><a href="#category-section">Best Seller</a></li>
                 <li><a href="#category-section2">Category</a></li>
+                <i class="fas fa-search"></i>
                 <input type="text" id="searchInput" placeholder="Search..">
             </ul>
             <div class="menu-toggle" id="mobile-menu">
@@ -128,25 +129,123 @@
         {% for makanan2 in makanan2_list %}
             <div class="makanan2">
                 <img src="{{ makanan2.gambar.url }}" alt="{{ makanan2.nama_category }}">
-                <h1>{{ makanan2.nama_category }}</h1>
+                <h1 class="makanan-name">{{ makanan2.nama_category }}</h1>
                 <p>Price: ${{ makanan2.harga }}</p>
                 <button class="btn-add-to-card">Add to Cart</button>
             </div>
         {% endfor %}
     </div>
-</div>
+<script>
+    const cartIcon = document.getElementById("cart-icon");
+    const cartSidebar = document.querySelector(".cart-sidebar");
+    const cartItemsContainer = document.querySelector(".cart-items");
+    const closeBtn = document.querySelector(".close-btn");
+    
+    // Seleksi semua tombol "Add to Cart" dari kedua kategori
+    const addToCartButtons = document.querySelectorAll(".makanan .btn-add-to-card, .makanan2 .btn-add-to-card");
 
-    <script>
-        window.addEventListener("scroll", function() {
-            const navbar = document.querySelector(".navbar");
-            
-            // Cek apakah scrollY sudah melebihi 50px
-            if (window.scrollY > 50) {
-                navbar.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.1)";
-            } else {
-                navbar.style.boxShadow = "none"; // Hilangkan box-shadow saat berada di atas
-            }
-        });
-    </script>
+    // Fungsi untuk menampilkan sidebar keranjang
+    function openCartSidebar() {
+        cartSidebar.style.right = "0";
+    }
+
+    // Fungsi untuk menutup sidebar keranjang
+    function closeCartSidebar() {
+        cartSidebar.style.right = "-100%";
+    }
+
+    // Fungsi untuk menghapus item dari keranjang
+    function removeCartItem(cartItem) {
+        cartItem.remove();
+    }
+
+    // Fungsi untuk menambah jumlah item
+    function increaseQuantity(event) {
+        const cartItem = event.target.closest(".cart-item");
+        const quantityDisplay = cartItem.querySelector(".quantity-display");
+        const priceDisplay = cartItem.querySelector(".item-price");
+        const unitPrice = parseFloat(cartItem.getAttribute("data-unit-price"));
+
+        let quantity = parseInt(quantityDisplay.textContent);
+        quantity++;
+        quantityDisplay.textContent = quantity;
+
+        priceDisplay.textContent = `Rp ${(unitPrice * quantity).toFixed(2)}`;
+    }
+
+    // Fungsi untuk mengurangi jumlah item
+    function decreaseQuantity(event) {
+        const cartItem = event.target.closest(".cart-item");
+        const quantityDisplay = cartItem.querySelector(".quantity-display");
+        const priceDisplay = cartItem.querySelector(".item-price");
+        const unitPrice = parseFloat(cartItem.getAttribute("data-unit-price"));
+
+        let quantity = parseInt(quantityDisplay.textContent);
+        
+        if (quantity > 1) {
+            quantity--;
+            quantityDisplay.textContent = quantity;
+            priceDisplay.textContent = `Rp ${(unitPrice * quantity).toFixed(2)}`;
+        } else {
+            removeCartItem(cartItem);
+        }
+    }
+
+    // Fungsi untuk menambahkan item ke keranjang
+    function addToCart(event) {
+        const makananElement = event.target.closest(".makanan, .makanan2");
+        const itemName = makananElement.querySelector(".makanan-name").textContent;
+        const itemPrice = parseFloat(makananElement.querySelector("p").textContent.replace(/[^0-9.-]+/g,""));
+        const itemImageSrc = makananElement.querySelector("img").src;
+
+        // Cek apakah item sudah ada di keranjang
+        const existingCartItem = Array.from(cartItemsContainer.children).find(item => 
+            item.querySelector("h4").textContent === itemName
+        );
+
+        if (existingCartItem) {
+            const quantityDisplay = existingCartItem.querySelector(".quantity-display");
+            quantityDisplay.textContent = parseInt(quantityDisplay.textContent) + 1;
+            const priceDisplay = existingCartItem.querySelector(".item-price");
+            const unitPrice = parseFloat(existingCartItem.getAttribute("data-unit-price"));
+            const newQuantity = parseInt(quantityDisplay.textContent);
+            priceDisplay.textContent = `Rp ${(unitPrice * newQuantity).toFixed(2)}`;
+        } else {
+            const cartItem = document.createElement("div");
+            cartItem.classList.add("cart-item");
+            cartItem.setAttribute("data-unit-price", itemPrice);
+            cartItem.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                    <img src="${itemImageSrc}" alt="${itemName}" width="50" height="50">
+                    <div style="flex-grow: 1;">
+                        <h4>${itemName}</h4>
+                        <p class="item-price">Rp ${itemPrice.toFixed(2)}</p>
+                    </div>
+                    <div class="quantity-controls" style="display: flex; align-items: center; gap: 5px;">
+                        <button class="quantity-btn decrease-btn">-</button>
+                        <span class="quantity-display">1</span>
+                        <button class="quantity-btn increase-btn">+</button>
+                    </div>
+                </div>
+            `;
+
+            const increaseButton = cartItem.querySelector(".increase-btn");
+            const decreaseButton = cartItem.querySelector(".decrease-btn");
+            increaseButton.addEventListener("click", increaseQuantity);
+            decreaseButton.addEventListener("click", decreaseQuantity);
+
+            cartItemsContainer.appendChild(cartItem);
+        }
+    }
+
+    // Event listener untuk tombol "Add to Cart" dari kedua kategori
+    addToCartButtons.forEach(button => {
+        button.addEventListener("click", addToCart);
+    });
+
+    cartIcon.addEventListener("click", openCartSidebar);
+    closeBtn.addEventListener("click", closeCartSidebar);
+</script>
+</div>
 </body>
 </html>

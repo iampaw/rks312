@@ -96,46 +96,33 @@ html {
     font-size: 30px;
 }
 
-.nav-links input[type="text"]{
+.nav-links input[type="text"] {
     background: rgba(113, 47, 0, 0.212);
     color: #ffffff;
-    border-color: #ffffff;
-    float: right;
-    padding: 1px;
+    padding: 1px 10px 1px 30px; /* Tambahkan padding kiri untuk ruang ikon */
     border: 2px solid transparent;
     border-radius: 10px;
     outline: none;
-    position: relative;
     margin-top: 8px;
+    position: relative;
     margin-left: 40px;
     font-size: 17px;
     top: 28px;
+    width: 200px; /* Atur lebar input sesuai keinginan */
+}
+
+.container .fa-search {
+    font-size: 20px;
+    color: #000;
+    margin-right: 9px;
+    position: relative;
+    top: 40px;
+    left: 78px;
 }
 
 .nav-links input[type="text"]::placeholder {
-    text-align: center;
+    text-align: left;
     opacity: 1;
-}
-
-.nav-links input[type="text"]:focus {
-    border-color: rgb(255, 0, 0);
-}
-
-
-.nav-links input[type="text"]:focus {
-    animation: borderAnimation 2s infinite; /* Sesuaikan durasi animasi sesuai kebutuhan */
-}
-
-@keyframes borderAnimation {
-    0%{
-        border-color: #5ff9cd;
-    }
-    50%{
-        border-color: #93AEC1;
-    }
-    100%{
-        border-color: #EDE0D0;
-    }
 }
 
 .menu-toggle {
@@ -220,6 +207,29 @@ html {
     cursor: pointer;
     margin-left: 20px;
 }
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: auto;
+}
+
+.quantity-btn {
+    background-color: #f1c40f;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: #333;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.quantity-display {
+    padding: 0 10px;
+    font-weight: bold;
+}
+ /***********************************************/
 
 @media screen and (max-width: 768px) {
     .bar {
@@ -313,10 +323,11 @@ html {
 /*=================section2===============*/
 .section2-kedua {
     text-align: center;
-    padding-bottom: 500px; /* Mengurangi jarak bawah */
+    padding-bottom: 200px; /* Mengurangi jarak bawah */
     font-size: 50px;
     position: relative;
-    top: 400px; /* Mengembalikan posisi ke atas */
+    top: 50px; /* Mengembalikan posisi ke atas */
+    padding-top: 90px;
 }
 
 /*=================category makanan2===============*/
@@ -325,7 +336,6 @@ html {
     display: flex;
     justify-content:center;
     flex-wrap: wrap;
-    margin: 100px;
 }
 
 .makanan2 {
@@ -339,7 +349,7 @@ html {
     margin: 20px; /* Memberi jarak antar item */
     max-width: 300px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    top: 80px;
+    top: -100px;
 }
 
 .makanan2 img {
@@ -378,3 +388,6 @@ html {
 .btn-add-to-card:hover {
     background-color: #c0c0c0;
 }
+
+/*=================Tombol===============*/
+
