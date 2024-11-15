@@ -58,11 +58,35 @@ html {
 
 /*================ICON==========================*/
 
-.header-icon {
-    text-align: right;
-    margin: 20px;
+.header-icon svg {
+    width: 30px;
+    height: 30px;
     position: relative;
+    left: 800px;
+}
 
+#account-icon svg {
+    width: 30px;
+    height: 30px;
+    fill: #673c00; /* Warna ikon akun */
+    transition: transform 0.3s ease;
+}
+
+#account-icon svg:hover {
+    transform: scale(1.1); /* Efek hover */
+    fill: #885a20;
+}
+
+#cart-icon svg {
+    width: 30px;
+    height: 30px;
+    fill: #673c00; /* Warna ikon keranjang */
+    transition: transform 0.3s ease;
+}
+
+#cart-icon svg:hover {
+    transform: scale(1.1); /* Efek hover */
+    fill: #885a20;
 }
 
 /*======================NAVBAR=========================*/
@@ -77,6 +101,10 @@ html {
     box-shadow: none; /* Awalnya tidak ada box-shadow */
 }
 
+.navbar.scrolled {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan saat scroll */
+}
+
 
 .nav-links{
     list-style: none;
@@ -88,7 +116,7 @@ html {
     margin-left: 20px;
     position: relative;
     left: 10px;
-    top: 30px;
+    top: 15px;
 }
 
 .nav-links a{
@@ -107,7 +135,7 @@ html {
     position: relative;
     margin-left: 40px;
     font-size: 17px;
-    top: 28px;
+    top: 15px;
     width: 200px; /* Atur lebar input sesuai keinginan */
 }
 
@@ -116,7 +144,7 @@ html {
     color: #000;
     margin-right: 9px;
     position: relative;
-    top: 40px;
+    top: 28px;
     left: 78px;
 }
 

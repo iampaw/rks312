@@ -1,6 +1,7 @@
 # webku/models.py
 
 from django.db import models
+from django.contrib.auth.models import User
 
 class Makanan(models.Model):
     nama_menu = models.CharField(max_length=100)
@@ -16,4 +17,12 @@ class makanan2(models.Model):
     gambar = models.ImageField(upload_to='category_makanan/')
 
     def __str__(self):
-        return self.nama_category
+        return self.nama_category\
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Menghubungkan model ini dengan model User
+    full_name = models.CharField(max_length=100)
+
+    
+    def __str__(self):
+        return self.user.username
