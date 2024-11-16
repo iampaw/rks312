@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib import admin
 
 class Makanan(models.Model):
     nama_menu = models.CharField(max_length=100)
@@ -19,10 +20,21 @@ class makanan2(models.Model):
     def __str__(self):
         return self.nama_category\
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Menghubungkan model ini dengan model User
-    full_name = models.CharField(max_length=100)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'full_name', 'user_email', 'last_login', 'is_active')
 
-    
-    def __str__(self):
-        return self.user.username
+    # Fungsi untuk menampilkan email dari User
+    def user_email(self, obj):
+        return obj.user.email
+    user_email.short_description = 'Email'
+
+    # Fungsi untuk menampilkan login terakhir dari User
+    def last_login(self, obj):
+        return obj.user.last_login
+    last_login.short_description = 'Last Login'
+
+    # Fungsi untuk menampilkan status aktif
+    def is_active(self, obj):
+        return obj.user.is_active
+    is_active.short_description = 'Active'
+    is_active.boolean = True

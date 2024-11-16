@@ -59,15 +59,15 @@ def custom_login(request):
 
         if user is not None:
             # Jika autentikasi berhasil, login pengguna
-            login(request, user)
+            login(request, user)  # Gunakan login dari Django
             messages.success(request, "Login successful!")
             return redirect('home')  # Alihkan ke halaman home setelah login berhasil
         else:
             # Jika login gagal
             messages.error(request, "Invalid username or password!")
-            return redirect('signup')  # Kembali ke halaman login jika login gagal
+            return redirect('custom_login')  # Kembali ke halaman login jika login gagal
 
-    return render(request, 'signup.html')  # Jika metode GET, render halaman login
+    return render(request, 'home.html')  # Render halaman login jika metode GET
 
 def logout_view(request):
     logout(request)

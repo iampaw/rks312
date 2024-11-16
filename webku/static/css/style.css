@@ -59,17 +59,20 @@ html {
 /*================ICON==========================*/
 
 .header-icon svg {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     position: relative;
-    left: 800px;
+    left: 700px;
 }
 
 #account-icon svg {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     fill: #673c00; /* Warna ikon akun */
     transition: transform 0.3s ease;
+    position: relative;
+    left: 900px;
+    top: -12px;
 }
 
 #account-icon svg:hover {
@@ -78,10 +81,13 @@ html {
 }
 
 #cart-icon svg {
-    width: 30px;
-    height: 30px;
-    fill: #673c00; /* Warna ikon keranjang */
+    width: 25px;
+    height: 25px;
+    fill: #673c00; 
     transition: transform 0.3s ease;
+    position: relative;
+    left: 715px;
+    top: -14px;
 }
 
 #cart-icon svg:hover {
