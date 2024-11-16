@@ -18,7 +18,7 @@ class makanan2(models.Model):
     gambar = models.ImageField(upload_to='category_makanan/')
 
     def __str__(self):
-        return self.nama_category\
+        return self.nama_category
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'full_name', 'user_email', 'last_login', 'is_active')
