@@ -53,7 +53,7 @@ html {
     display: flex;
     position: relative;
     top: 30px;
-    color: #699a8c;
+    color: #F8B042;
 }
 
 /*================ICON==========================*/
@@ -193,19 +193,19 @@ html {
     right: -100%;
     width: 300px;
     height: 100%;
-    background-color: rgb(244, 219, 166);
+    background-color: #93AEC1;
     color: #fff;
     transition: right 0.3s ease;
     z-index: 1000;
     display: flex;
     flex-direction: column;
     font-family: 'MADE Sunflower', sans-serif;
-    
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
 }
 
 .cart-sidebar h2 {
     padding: 20px;
-    background-color: rgb(227, 144, 0);
+    background-color: #9dbdba;
     margin: 0;
 }
 
@@ -230,12 +230,9 @@ html {
     border: none;
     cursor: pointer;
     border-radius: 10px;
+    font-family: 'MADE Sunflower', sans-serif;
 }
 
-.checkout-btn {
-    background-color: #f1c40f;
-    border-radius: 10px;
-}
 
 #cart-icon {
     cursor: pointer;
@@ -250,7 +247,7 @@ html {
 }
 
 .quantity-btn {
-    background-color: #f1c40f;
+    background-color: #9dbdba;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
@@ -259,10 +256,7 @@ html {
     font-weight: bold;
 }
 
-.quantity-display {
-    padding: 0 10px;
-    font-weight: bold;
-}
+
  /***********************************************/
 
 @media screen and (max-width: 768px) {

@@ -11,6 +11,9 @@ from django.contrib.auth.models import User
 def home(request):
     return render(request, 'home.html')  # Pastikan Anda memiliki template 'home.html'
 
+def checkout(request):
+    return render(request, 'checkout.html')
+
 def signup(request):
     if request.method == 'POST':
         username = request.POST.get('username')
