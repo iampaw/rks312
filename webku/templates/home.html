@@ -130,17 +130,26 @@
         <h3>CATEGORY</h3>
     </div>
 
-    <!-- Bagian makanan -->
-    <div class="makanan2-category">
-        {% for makanan2 in makanan2_list %}
-            <div class="makanan2">
-                <img src="{{ makanan2.gambar.url }}" alt="{{ makanan2.nama_category }}">
-                <h1 class="makanan-name">{{ makanan2.nama_category }}</h1>
-                <p>Price: ${{ makanan2.harga }}</p>
-                <button class="btn-add-to-card">Add to Cart</button>
-            </div>
-        {% endfor %}
+<div id="category-buttons">
+    <button onclick="filterCategory('all')">All</button>
+    <button onclick="filterCategory('makanan')">Makanan</button>
+    <button onclick="filterCategory('minuman')">Minuman</button>
+    <button onclick="filterCategory('cake')">Cake</button>
+    <button onclick="filterCategory('cookies')">Cookies</button>
+</div>
+
+<div class="makanan2-category">
+    {% for makanan2 in makanan2_list %}
+    <div class="makanan2" data-category="{{ makanan2.category }}">
+        <img src="{{ makanan2.gambar.url }}" alt="{{ makanan2.nama_category }}">
+        <h1 class="makanan-name">{{ makanan2.nama_category }}</h1>
+        <p>Price: ${{ makanan2.harga }}</p>
+        <button class="btn-add-to-card">Add to Cart</button>
     </div>
+    {% endfor %}
+</div>
+</div>
+
 <script>
     const cartIcon = document.getElementById("cart-icon");
     const cartSidebar = document.querySelector(".cart-sidebar");
@@ -260,6 +269,34 @@
         navbar.classList.remove("scrolled");
     }
 });
+</script>
+
+<script>
+    function filterCategory(category) {
+        const items = document.querySelectorAll('.makanan2');
+        items.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+                item.style.display = 'block'; // Tampilkan
+            } else {
+                item.style.display = 'none'; // Sembunyikan
+            }
+        });
+    }
+</script>
+<script>
+    function filterCategory(category) {
+        // Pilih semua elemen menu makanan
+        const items = document.querySelectorAll('.makanan2');
+
+        // Iterasi elemen dan tampilkan atau sembunyikan sesuai kategori
+        items.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+                item.style.display = 'block'; // Tampilkan item
+            } else {
+                item.style.display = 'none'; // Sembunyikan item
+            }
+        });
+    }
 </script>
 </div>
 </body>
