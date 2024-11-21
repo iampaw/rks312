@@ -11,7 +11,7 @@ body {
     margin: auto;
     font-family: 'MADE Sunflower', sans-serif;
     overflow: auto;
-    background-color: #93AEC1;
+    background-color: #f9f0df;
     animation: gradient 15s ease infinite;
     background-size: 400% 400%;
     background-attachment: fixed;
@@ -38,24 +38,81 @@ html {
 
 
 /*==============judul dan deskripsi================*/
-
-.title{
-    font-size: 40px;
-    text-align: center;
-    margin:20px;
-}
-
-.description{
-    font-size: 50px;
-    align-items: center;
-    justify-content:space-evenly;
-    margin: 10px;
-    display: flex;
+.text-container {
     position: relative;
-    top: 30px;
-    color: #F8B042;
+    display: inline-block;
 }
 
+.text-the {
+    font-size: 50px;
+    color: #c85c42;
+    position: relative;
+    align-items: center;
+    top: 200px; /* Posisi teks "The" lebih tinggi */
+    left: 135px;    /* Teks berada di sisi kiri */
+}
+
+.text-sweeter {
+    font-size: 50px;
+    font-weight: bold;
+    color: #c85c42;
+    position: relative;
+    top: 250px;
+    margin-left: 40px; /* Beri jarak horizontal untuk menyesuaikan tata letak */
+}
+
+.kuekue {
+    display: flex; /* Menggunakan Flexbox */
+    justify-content: center; /* Pusatkan secara horizontal */
+    align-items: center; /* Pusatkan secara vertikal (jika diperlukan) */
+}
+
+.kuekue img {
+    width: 100%; /* Responsif, agar gambar menyesuaikan container */
+    max-width: 450px; /* Batas maksimum lebar gambar */
+    height: auto; /* Proporsi gambar tetap */
+    position: relative;
+    top: -530px;
+    left: -10px;
+}
+
+.round-planet {
+    width: 480px;
+    height: 480px;
+    border-radius: 50%; /* Membuat lingkaran */
+    position: relative;
+    z-index: 0;
+    border: 3px solid #f9f9ff; /* Garis border putih lembut */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Posisi elemen anak di tengah */
+    position: relative;
+    left: 505px;
+    top: 20px;
+}
+
+/* Lingkaran dalam */
+.inner-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid #ffffff; /* Warna border putih */
+}
+
+/* Ukuran dan posisi setiap lingkaran */
+.circle-1 {
+    width: 360px;
+    height: 360px;
+}
+
+.circle-2 {
+    width: 240px;
+    height: 240px;
+}
+
+.circle-3 {
+    width: 120px;
+    height: 120px;
+}
 /*================ICON==========================*/
 
 .header-icon svg {
@@ -68,7 +125,7 @@ html {
 #account-icon svg {
     width: 25px;
     height: 25px;
-    fill: #673c00; /* Warna ikon akun */
+    fill: #111; /* Warna ikon akun */
     transition: transform 0.3s ease;
     position: relative;
     left: 900px;
@@ -77,13 +134,13 @@ html {
 
 #account-icon svg:hover {
     transform: scale(1.1); /* Efek hover */
-    fill: #885a20;
+    fill: #111;
 }
 
 #cart-icon svg {
     width: 25px;
     height: 25px;
-    fill: #673c00; 
+    fill: #111; 
     transition: transform 0.3s ease;
     position: relative;
     left: 715px;
@@ -92,7 +149,7 @@ html {
 
 #cart-icon svg:hover {
     transform: scale(1.1); /* Efek hover */
-    fill: #885a20;
+    fill: #111;
 }
 
 /*======================NAVBAR=========================*/
@@ -102,7 +159,7 @@ html {
     position: sticky;
     top: 0; /* Tetap berada di bagian atas */
     z-index: 1000;
-    background-color: #93AEC1;
+    background-color: #f9f0df;
     transition: box-shadow 0.3s ease; /* Efek transisi untuk box-shadow */
     box-shadow: none; /* Awalnya tidak ada box-shadow */
 }
@@ -126,7 +183,7 @@ html {
 }
 
 .nav-links a{
-    color: rgb(103, 60, 0);
+    color: #111;
     font-size: 30px;
 }
 
@@ -385,6 +442,7 @@ html {
     height: 180px; /* Mempertahankan rasio aspek gambar */
     max-width: 200px; /* Atur lebar maksimum jika diperlukan */
     border-radius: 10px; /* Tambahkan sudut melengkung pada gambar jika diinginkan */
+    transition: transform 250ms ease;
 }
 
 

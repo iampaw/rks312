@@ -7,6 +7,7 @@
     <title>E-Commerce | RKS-312</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
@@ -80,9 +81,17 @@
         </div>
     </div>
     <div class="description">
-        <p>Food tastes Better When<br>You Eat it With Your Hands</p>
+        <span class="text-the">The</span>
+        <span class="text-sweeter">Sweetery</span>
+    </div>
+    <div class="banner_right">
+        <div class="round-planet">
+            <div class="inner-circle circle-1"></div>
+            <div class="inner-circle circle-2"></div>
+            <div class="inner-circle circle-3"></div>
+        </div>
         <div class="kuekue">
-            <img src="{% static 'images/images (cakecake).png' %}" width="350px" alt="Cake Image"> 
+            <img src="{% static 'images/utama.png' %}" width="350px" alt="Cake Image"> 
         </div>
     </div>
  
@@ -140,7 +149,7 @@
 
 <div class="makanan2-category">
     {% for makanan2 in makanan2_list %}
-    <div class="makanan2" data-category="{{ makanan2.category }}">
+    <div  class="makanan2" data-category="{{ makanan2.category }}">
         <img src="{{ makanan2.gambar.url }}" alt="{{ makanan2.nama_category }}">
         <h1 class="makanan-name">{{ makanan2.nama_category }}</h1>
         <p>Price: ${{ makanan2.harga }}</p>
@@ -298,6 +307,10 @@
         });
     }
 </script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+  </script>
 </div>
 </body>
 </html>
