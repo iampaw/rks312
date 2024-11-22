@@ -67,15 +67,6 @@ html {
     align-items: center; /* Pusatkan secara vertikal (jika diperlukan) */
 }
 
-.kuekue img {
-    width: 100%; /* Responsif, agar gambar menyesuaikan container */
-    max-width: 450px; /* Batas maksimum lebar gambar */
-    height: auto; /* Proporsi gambar tetap */
-    position: relative;
-    top: -530px;
-    left: -10px;
-}
-
 .round-planet {
     width: 480px;
     height: 480px;
@@ -89,6 +80,11 @@ html {
     position: relative;
     left: 505px;
     top: 20px;
+}
+.round-planet img {
+    z-index: 10;
+    width: 550px;
+    transform: translate(10px, -20px);
 }
 
 /* Lingkaran dalam */
@@ -113,44 +109,15 @@ html {
     width: 120px;
     height: 120px;
 }
+
 /*================ICON==========================*/
 
-.header-icon svg {
-    width: 20px;
-    height: 20px;
-    position: relative;
-    left: 700px;
+.header-icon {
+    text-align: right;
+    margin: 20px;
+
 }
 
-#account-icon svg {
-    width: 25px;
-    height: 25px;
-    fill: #111; /* Warna ikon akun */
-    transition: transform 0.3s ease;
-    position: relative;
-    left: 900px;
-    top: -12px;
-}
-
-#account-icon svg:hover {
-    transform: scale(1.1); /* Efek hover */
-    fill: #111;
-}
-
-#cart-icon svg {
-    width: 25px;
-    height: 25px;
-    fill: #111; 
-    transition: transform 0.3s ease;
-    position: relative;
-    left: 715px;
-    top: -14px;
-}
-
-#cart-icon svg:hover {
-    transform: scale(1.1); /* Efek hover */
-    fill: #111;
-}
 
 /*======================NAVBAR=========================*/
 
@@ -163,7 +130,15 @@ html {
     transition: box-shadow 0.3s ease; /* Efek transisi untuk box-shadow */
     box-shadow: none; /* Awalnya tidak ada box-shadow */
 }
-
+.navbar .container {
+    position: sticky;
+    background: transparent;
+    display: flex;
+    justify-content: space-between; /* Membuat logo, menu, dan ikon cart berjarak */
+    align-items: center; /* Menjaga semua elemen sejajar secara vertikal */
+    padding: 10px 10px; /* Tambahkan padding sesuai kebutuhan */
+    height: 70px;
+}
 .navbar.scrolled {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan saat scroll */
 }
@@ -179,7 +154,6 @@ html {
     margin-left: 20px;
     position: relative;
     left: 10px;
-    top: 15px;
 }
 
 .nav-links a{
@@ -198,7 +172,6 @@ html {
     position: relative;
     margin-left: 40px;
     font-size: 17px;
-    top: 15px;
     width: 200px; /* Atur lebar input sesuai keinginan */
 }
 
@@ -207,8 +180,8 @@ html {
     color: #000;
     margin-right: 9px;
     position: relative;
-    top: 28px;
     left: 78px;
+    top: 12px;
 }
 
 .nav-links input[type="text"]::placeholder {
@@ -480,3 +453,28 @@ html {
     background-color: #007BFF;
     color: white;
 }
+
+/****************Tombol category**********/
+#category-buttons {
+    display: flex; 
+    justify-content: center; 
+    gap: 80px; 
+    margin-top: -20px;
+    margin-bottom: 50px;
+
+}
+
+#category-buttons button {
+    background: none; 
+    border: none; 
+    color: inherit; 
+    font-size: 20px; 
+    font-family: 'MADE Sunflower', sans-serif; 
+    cursor: pointer; 
+    padding: 0; 
+    text-decoration: none; 
+    transition: color 0.3s ease;
+    position: relative;
+    top: -100px; 
+}
+

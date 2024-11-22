@@ -32,19 +32,12 @@
                         <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
                     </svg>
                 </a>
-                <a href="#" id="cart-icon" class="cart-icon">
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="rgb(103, 60, 0)"
-            class="bi bi-cart4"
-            viewBox="0 0 16 16"
-        >
-            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
-        </svg>
-    </a>
-</div>
+                <a href="#" id="cart-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="rgb(103, 60, 0)" class="bi bi-cart4" viewBox="0 0 16 16">
+                        <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+                    </svg>
+                </a>
+            </div>
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -89,8 +82,6 @@
             <div class="inner-circle circle-1"></div>
             <div class="inner-circle circle-2"></div>
             <div class="inner-circle circle-3"></div>
-        </div>
-        <div class="kuekue">
             <img src="{% static 'images/utama.png' %}" width="350px" alt="Cake Image"> 
         </div>
     </div>
@@ -139,6 +130,23 @@
         <h3>CATEGORY</h3>
     </div>
 
+<script>
+    function filterCategory(category) {
+        // Get all items
+        const items = document.querySelectorAll('.makanan2');
+
+        // Loop through items and show/hide based on category
+        items.forEach(item => {
+            const itemCategory = item.getAttribute('data-category');
+            
+            if (category === 'all' || itemCategory === category) {
+                item.style.display = 'block'; // Show item
+            } else {
+                item.style.display = 'none'; // Hide item
+            }
+        });
+    }
+</script>
 <div id="category-buttons">
     <button onclick="filterCategory('all')">All</button>
     <button onclick="filterCategory('makanan')">Makanan</button>
@@ -146,10 +154,9 @@
     <button onclick="filterCategory('cake')">Cake</button>
     <button onclick="filterCategory('cookies')">Cookies</button>
 </div>
-
 <div class="makanan2-category">
     {% for makanan2 in makanan2_list %}
-    <div  class="makanan2" data-category="{{ makanan2.category }}">
+    <div class="makanan2" data-category="{{ makanan2.category }}">
         <img src="{{ makanan2.gambar.url }}" alt="{{ makanan2.nama_category }}">
         <h1 class="makanan-name">{{ makanan2.nama_category }}</h1>
         <p>Price: ${{ makanan2.harga }}</p>
@@ -157,7 +164,23 @@
     </div>
     {% endfor %}
 </div>
-</div>
+
+<script>
+    function filterCategory(category) {
+        const items = document.querySelectorAll('.makanan2'); // Pilih semua elemen makanan2
+
+        items.forEach(item => {
+            const itemCategory = item.getAttribute('data-category'); // Ambil kategori dari atribut data-category
+            
+            if (category === 'all' || itemCategory === category) {
+                item.style.display = 'block'; // Tampilkan elemen
+            } else {
+                item.style.display = 'none'; // Sembunyikan elemen
+            }
+        });
+    }
+</script>
+
 
 <script>
     const cartIcon = document.getElementById("cart-icon");
@@ -278,34 +301,6 @@
         navbar.classList.remove("scrolled");
     }
 });
-</script>
-
-<script>
-    function filterCategory(category) {
-        const items = document.querySelectorAll('.makanan2');
-        items.forEach(item => {
-            if (category === 'all' || item.dataset.category === category) {
-                item.style.display = 'block'; // Tampilkan
-            } else {
-                item.style.display = 'none'; // Sembunyikan
-            }
-        });
-    }
-</script>
-<script>
-    function filterCategory(category) {
-        // Pilih semua elemen menu makanan
-        const items = document.querySelectorAll('.makanan2');
-
-        // Iterasi elemen dan tampilkan atau sembunyikan sesuai kategori
-        items.forEach(item => {
-            if (category === 'all' || item.dataset.category === category) {
-                item.style.display = 'block'; // Tampilkan item
-            } else {
-                item.style.display = 'none'; // Sembunyikan item
-            }
-        });
-    }
 </script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>

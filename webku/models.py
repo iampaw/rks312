@@ -21,6 +21,7 @@ class makanan2(models.Model):
         ('minuman', 'Minuman'),
         ('cake', 'Cake'),
         ('cookies', 'Cookies'),
+
     ])
 
     def __str__(self):
