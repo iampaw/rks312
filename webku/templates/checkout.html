@@ -6,52 +6,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
-    <title>Checkout</title>
+    <title>Shopping Cart</title>
 </head>
 <body>
-
-    <div class="makanan-container">
-        {% for makanan in makanan_list %}
-            <div class="makanan" id="makanan-{{ forloop.counter }}">
-                <img src="{{ makanan.gambar.url }}" alt="{{ makanan.nama_menu }}">
-                <h1 class="makanan-name">{{ makanan.nama_menu }}</h1>
-                <p class="makanan-price">Price: $<span>{{ makanan.harga }}</span></p>
-                <button class="btn-add-to-cart" 
-                        data-name="{{ makanan.nama_menu }}" 
-                        data-price="{{ makanan.harga }}" 
-                        data-image="{{ makanan.gambar.url }}">
-                    Add to Cart
-                </button>
-            </div>
-        {% endfor %}
-    </div>
-
     <div class="cart-container">
-        <table class="cart-table">
+        <table>
             <thead>
                 <tr>
-                    <th>Product Image</th>
-                    <th>Name</th>
+                    <th>Produk</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
                 </tr>
             </thead>
-            <tbody id="cart-body">
-                <!-- Produk akan ditambahkan di sini -->
+            <tbody id="cart-items">
+                <!-- Item 1 -->
+                <tr>
+                    <td>
+                        <div class="product-info">
+                            <img src="https://via.placeholder.com/50" alt="Product Image">
+                            <span>Fun Ice Cream</span>
+                        </div>
+                    </td>
+                    <td>Rp 13.000</td>
+                    <td>
+                        <div class="quantity">
+                            <button class="decrease">−</button>
+                            <span class="qty">2</span>
+                            <button class="increase">+</button>
+                        </div>
+                    </td>
+                    <td class="total">Rp 26.000</td>
+                </tr>
+                <div class="header">
+                    <button class="back-button" onclick="goBack()">
+                        &#8592; <!-- Panah ke kiri -->
+                    </button>
+                    <h1>Your Details Order</h1>
+                </div>
+                <!-- Item 2 -->
+                <tr>
+                    <td>
+                        <div class="product-info">
+                            <img src="https://via.placeholder.com/50" alt="Product Image">
+                            <span>Fun Ice Cream</span>
+                        </div>
+                    </td>
+                    <td>Rp 13.000</td>
+                    <td>
+                        <div class="quantity">
+                            <button class="decrease">−</button>
+                            <span class="qty">2</span>
+                            <button class="increase">+</button>
+                        </div>
+                    </td>
+                    <td class="total">Rp 26.000</td>
+                </tr>
+
+                <!-- Item 3 -->
+                <tr>
+                    <td>
+                        <div class="product-info">
+                            <img src="https://via.placeholder.com/50" alt="Product Image">
+                            <span>Fun Ice Cream</span>
+                        </div>
+                    </td>
+                    <td>Rp 13.000</td>
+                    <td>
+                        <div class="quantity">
+                            <button class="decrease">−</button>
+                            <span class="qty">2</span>
+                            <button class="increase">+</button>
+                        </div>
+                    </td>
+                    <td class="total">Rp 26.000</td>
+                </tr>
             </tbody>
         </table>
-        <div class="cart-summary">
-            <p>Subtotal: $<span id="subtotal">0.00</span></p>
-            <button class="btn-checkout">Checkout</button>
-        </div>
     </div>
-            </table>
-            <div class="buttons">
-                <button class="btn update-cart">Update Cart</button>
-                <button class="btn checkout">Check Out</button>
-            </div>
-        </div>
-    </div>
+    <script src="script.js"></script>
 </body>
 </html>

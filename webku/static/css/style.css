@@ -43,6 +43,17 @@ html {
     display: inline-block;
 }
 
+.baground {
+    background: linear-gradient(to bottom, #f8f8ff, #ffffff); /* Gradien warna */
+    background-position: right bottom;
+    height: 730px;
+    width: 750px;
+    position: absolute;
+    top: 0;
+    left: 1px;
+    z-index: -1; /* Supaya di belakang konten */
+}
+
 .text-the {
     font-size: 50px;
     color: #c85c42;
@@ -98,6 +109,7 @@ html {
 .circle-1 {
     width: 360px;
     height: 360px;
+    z-index: -1;
 }
 
 .circle-2 {
@@ -477,4 +489,3 @@ html {
     position: relative;
     top: -100px; 
 }
-

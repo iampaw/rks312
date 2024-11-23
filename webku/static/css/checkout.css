@@ -1,82 +1,114 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #faf3e3;
     margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f8f8f8;
+    padding: 20px;
+    position: relative;
+    top: 100px;
 }
 
+/* Cart Container */
 .cart-container {
-    display: flex;
-    gap: 20px;
-    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.cart-table,
-.summary-table {
-    border-collapse: collapse;
+/* Table Styles */
+table {
     width: 100%;
+    border-collapse: collapse;
 }
 
-.cart-table th,
-.cart-table td,
-.summary-table td {
+thead th {
+    background-color: #344660;
+    color: #fff;
     padding: 10px;
     text-align: left;
-    border: 1px solid #ddd;
 }
 
-.cart-table th {
-    background-color: #f2f2f2;
+tbody td {
+    padding: 10px;
+    vertical-align: middle;
 }
 
-.product-image {
-    width: 50px;
-    height: auto;
-}
-
-.quantity-input {
-    width: 50px;
-    text-align: center;
-}
-
-.summary-container {
+/* Product Info */
+.product-info {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    min-width: 200px;
+    align-items: center;
+    gap: 10px;
 }
 
-.summary-table {
-    background-color: #f9f9f9;
+.product-info img {
+    width: 50px;
+    height: 50px;
     border-radius: 8px;
 }
 
-.summary-table td {
-    padding: 10px;
-}
-
-.buttons {
+/* Quantity Controls */
+.quantity {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
 
-.btn {
-    background-color: #ff7f00;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
+.quantity button {
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
 }
 
-.btn:hover {
-    background-color: #ff5700;
+.quantity button:hover {
+    background-color: #e0e0e0;
+}
+
+.qty {
+    width: 30px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Total Price */
+.total {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+
+
+/*************** Tombol kembali ke home ****************/
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #344660; /* Warna biru gelap */
+    color: #fff;
+    padding: 15px 20px;
+    font-family: 'Arial', sans-serif; /* Font sesuai kebutuhan */
+    position: relative;
+    top: -140px;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px; /* Ukuran ikon panah */
+    margin-right: 10px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.back-button:hover {
+    color: #f0e7d8; /* Warna panah saat hover */
+}
+
+h1 {
+    font-size: 18px; /* Ukuran teks judul */
+    margin: 0;
+    font-weight: normal;
 }
