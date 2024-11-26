@@ -216,15 +216,16 @@ html {
     display: flex;
     justify-content:center;
     flex-wrap: wrap;
-    margin: 100px;
 }
 
 .section-baru{
     text-align: center;
     font-size: 50px;
     position: relative;
-    top: 100px;
+    top: 120px;
     padding-top: 130px;
+    background: #C85C42;
+    height: 730px;
 }
 
 /*=====================cart============================*/
@@ -293,7 +294,7 @@ html {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    color: #333;
+    color: #F9F0DF;
     border-radius: 5px;
     font-weight: bold;
 }
@@ -350,7 +351,8 @@ html {
     margin: 20px; /* Memberi jarak antar item */
     max-width: 300px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    top: 80px;
+    position: relative;
+    top: -370px;
 }
 
 .makanan img {
@@ -396,8 +398,11 @@ html {
     padding-bottom: 200px; /* Mengurangi jarak bawah */
     font-size: 50px;
     position: relative;
-    top: 50px; /* Mengembalikan posisi ke atas */
-    padding-top: 90px;
+    top: -250px;
+    padding-top: 95px;
+    background-color: #C85C42;
+    height: 752px
+     
 }
 
 /*=================category makanan2===============*/
@@ -419,7 +424,7 @@ html {
     margin: 20px; /* Memberi jarak antar item */
     max-width: 300px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    top: -100px;
+    top: -800px;
 }
 
 .makanan2 img {
@@ -479,7 +484,7 @@ html {
 #category-buttons button {
     background: none; 
     border: none; 
-    color: inherit; 
+    color: #f9f0df; 
     font-size: 20px; 
     font-family: 'MADE Sunflower', sans-serif; 
     cursor: pointer; 
@@ -487,5 +492,7 @@ html {
     text-decoration: none; 
     transition: color 0.3s ease;
     position: relative;
-    top: -100px; 
-}
+    top: -780px;
+} 
+
+

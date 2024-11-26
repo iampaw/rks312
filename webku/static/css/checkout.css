@@ -85,14 +85,17 @@ tbody td {
 .header {
     display: flex;
     align-items: center;
-    background-color: #344660; /* Warna biru gelap */
+    background-color: #344660;
     color: #fff;
     padding: 15px 20px;
-    font-family: 'Arial', sans-serif; /* Font sesuai kebutuhan */
+    font-family: 'Arial', sans-serif;
     position: relative;
-    top: -140px;
+    top: -120px;
+    left: -130px;
+    border-radius: 8px;
+    width: 200px; /* Tambahkan lebar tetap */
+    height: 10px; /* Tambahkan tinggi tetap */
 }
-
 .back-button {
     background: none;
     border: none;
