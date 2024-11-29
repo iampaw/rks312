@@ -1,17 +1,20 @@
-body{
-	margin: 0;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	font-family:'Lucida Sans';
-	background: #93AEC1;
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'MADE Sunflower', sans-serif;
+    background-image: url("/static/images/bg2.png");
+    background-size: 100%; /* Mengatur agar gambar mengisi seluruh layar */
+    background-position: center; /* Posisi gambar di tengah */
+    background-repeat: no-repeat; /* Mencegah pengulangan gambar */
 }
 .main{
 	width: 450px;
 	height: 500px;
-	background: #ffff;
+	background: #c8d9e6;
 	overflow: hidden;
 	border-radius: 10px;
 	box-shadow: 5px 20px 50px #000;
@@ -35,7 +38,7 @@ body{
 	color: #c0c0c0;
 }
 label{
-	color: #000000;
+	color: #567c8d;
 	font-size: 2.3em;
 	justify-content: center;
 	display: flex;
@@ -47,14 +50,15 @@ label{
 input{
 	width: 60%;
 	height: 10px;
-	background: transparent;
 	justify-content: center;
 	display: flex;
 	margin: 18px auto;
 	padding: 12px;
-    border: 2px solid #753c00;
+    border: rgba(245, 239, 235, 0.35);
 	outline: none;
 	border-radius: 5px;
+	background-color: rgba(245, 239, 235, 0.35);
+	font-family: 'MADE Sunflower', sans-serif;
 }
 button{
 	width: 60%;
@@ -63,7 +67,7 @@ button{
 	justify-content: center;
 	display: block;
 	color: #ffff;
-	background: #ec6a52;
+	background: #567C8D;
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 30px;
@@ -72,6 +76,7 @@ button{
 	border-radius: 5px;
 	transition: .2s ease-in;
 	cursor: pointer;
+	font-family: 'MADE Sunflower', sans-serif;
 }
 button:hover{
 	background: #ed7863
@@ -103,20 +108,20 @@ button:hover{
 }
 
 .login{
-	background: #9DBDBA;
+	background: #f5efeb;
 	border-radius: 60% / 10%;
 	transform: translateY(-180px);
 	transition: .8s ease-in-out;
 }
 
 .login a{
-	color: rgb(103, 60, 0);
+	color: #567c8d;
 	text-decoration: none;
 	margin-left: 90px;
 }
 
 .login label{
-	color: rgb(0, 0, 0);
+	color: #567c8d;
 	transform: scale(.6);
 	position: relative;
 	top: 20px;
@@ -128,3 +133,17 @@ button:hover{
 #chk:checked ~ .login label{
 	transform: scale(1);	
 }
+
+.image-container {
+    text-align: center; /* Gambar di tengah layar */
+    margin-bottom: 20px; /* Spasi antara gambar dan form login */
+}
+
+/* Styling gambar */
+.standalone-logo {
+    width: 120px; /* Atur ukuran gambar */
+    height: auto; /* Jaga proporsi gambar */
+    border-radius: 10px; /* Opsional, untuk memberi efek sudut tumpul */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan untuk gambar */
+}
+
