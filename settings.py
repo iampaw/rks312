@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'webku.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Databaserks312',
+        'NAME': 'pblrks312',
         'USER': 'rks312',
-        'PASSWORD': 'rks312',
+        'PASSWORD': 'CARA MEMANCING IKAN',
         'HOST': 'localhost',
         'PORT': '3306',  # Default MySQL port
     }

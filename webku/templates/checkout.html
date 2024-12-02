@@ -21,23 +21,7 @@
             </thead>
             <tbody id="cart-items">
                 <!-- Item 1 -->
-                <tr>
-                    <td>
-                        <div class="product-info">
-                            <img src="https://via.placeholder.com/50" alt="Product Image">
-                            <span>Fun Ice Cream</span>
-                        </div>
-                    </td>
-                    <td>Rp 13.000</td>
-                    <td>
-                        <div class="quantity">
-                            <button class="decrease">−</button>
-                            <span class="qty">2</span>
-                            <button class="increase">+</button>
-                        </div>
-                    </td>
-                    <td class="total">Rp 26.000</td>
-                </tr>
+                
                 <div class="header">
                     <button class="back-button" onclick="goBack()">
                         &#8592; <!-- Panah ke kiri -->
@@ -45,45 +29,59 @@
                     <h1>Your Details Order</h1>
                 </div>
                 <!-- Item 2 -->
-                <tr>
-                    <td>
-                        <div class="product-info">
-                            <img src="https://via.placeholder.com/50" alt="Product Image">
-                            <span>Fun Ice Cream</span>
-                        </div>
-                    </td>
-                    <td>Rp 13.000</td>
-                    <td>
-                        <div class="quantity">
-                            <button class="decrease">−</button>
-                            <span class="qty">2</span>
-                            <button class="increase">+</button>
-                        </div>
-                    </td>
-                    <td class="total">Rp 26.000</td>
-                </tr>
+                <ul>
+                    {% for item in cart %}
+                        <li>
+                            <img src="{{ item.image }}" alt="{{ item.name }}" width="50">
+                            <p>{{ item.name }} - Rp {{ item.price }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="" class="checkout-btn">Proceed to Payment</a>
 
                 <!-- Item 3 -->
-                <tr>
-                    <td>
-                        <div class="product-info">
-                            <img src="https://via.placeholder.com/50" alt="Product Image">
-                            <span>Fun Ice Cream</span>
-                        </div>
-                    </td>
-                    <td>Rp 13.000</td>
-                    <td>
-                        <div class="quantity">
-                            <button class="decrease">−</button>
-                            <span class="qty">2</span>
-                            <button class="increase">+</button>
-                        </div>
-                    </td>
-                    <td class="total">Rp 26.000</td>
-                </tr>
+                
             </tbody>
         </table>
     </div>
-    <script src="script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartItemsContainer = document.getElementById("cart-items");
+    
+        let totalAmount = 0;
+    
+        cartItems.forEach(item => {
+            const row = document.createElement("tr");
+            const itemTotal = item.price * item.quantity;
+    
+            row.innerHTML = `
+                <td>
+                    <img src="${item.image}" alt="${item.name}" width="50"> ${item.name}
+                </td>
+                <td>Rp ${item.price.toFixed(2)}</td>
+                <td>${item.quantity}</td>
+                <td>Rp ${itemTotal.toFixed(2)}</td>
+            `;
+    
+            cartItemsContainer.appendChild(row);
+    
+            totalAmount += itemTotal;
+        });
+    
+        // Tambahkan total pembayaran
+        const totalRow = document.createElement("tr");
+        totalRow.innerHTML = `
+            <td colspan="3" style="text-align: right;"><strong>Total:</strong></td>
+            <td><strong>Rp ${totalAmount.toFixed(2)}</strong></td>
+        `;
+        cartItemsContainer.appendChild(totalRow);
+    });
+    document.querySelector(".checkout-btn").addEventListener("click", function() {
+    alert("Thank you for your purchase!");
+    localStorage.removeItem("cart"); // Kosongkan keranjang
+    window.location.href = "/payment"; // Arahkan ke halaman pembayaran
+    });
+    </script>
 </body>
 </html>

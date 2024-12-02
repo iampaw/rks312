@@ -96,6 +96,7 @@ html {
     z-index: 10;
     width: 550px;
     transform: translate(10px, -20px);
+    position: absolute;
 }
 
 /* Lingkaran dalam */
@@ -492,10 +493,15 @@ html {
     cursor: pointer; 
     padding: 0; 
     text-decoration: none; 
-    transition: color 0.3s ease;
+    transition: color 0.3s ease; /* Animasi transisi untuk perubahan warna */
     position: relative;
     top: -780px;
-} 
+}
+
+/* Gaya saat mouse diarahkan ke tombol */
+#category-buttons button:hover {
+    color: #F9F0DF; /* Warna berubah saat diarahkan */
+}
 
 /* Judul section */
 .section-baru h4 {
@@ -510,4 +516,48 @@ html {
     color: #F9F0DF; /* Warna teks utama */
     margin-bottom: 30px; /* Spasi bawah judul */
     font-weight: bold;
+}
+
+/**************** Section 3 ***********************/
+.section3-ketiga {
+    text-align: center;
+    padding-bottom: 30px;
+    font-size: 50px;
+    position: relative;
+    top: -630px;
+    padding-top: 100px;
+    height: 100px;
+}
+
+.section3-ketiga h3 {
+    font-size: 50px;
+    color: #000000;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.Sweetery {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+}
+
+.Sweetery div {
+    width: 30%;
+    text-align: left;
+}
+
+.section h2 {
+    font-family: 'Georgia', serif;
+    font-size: 24px;
+    color: #2e3a59;
+}
+
+
+.about {
+    position: relative; /* Menjadikan elemen bisa dipindah */
+    top: 30px; /* Geser ke bawah */
+    left: 50px; /* Geser ke kiri */
+    color: #000000;
+    top: -100px;
 }

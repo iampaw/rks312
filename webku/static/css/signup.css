@@ -38,7 +38,7 @@ body {
 	color: #c0c0c0;
 }
 label{
-	color: #567c8d;
+	color: #2F4156;
 	font-size: 2.3em;
 	justify-content: center;
 	display: flex;
@@ -115,13 +115,25 @@ button:hover{
 }
 
 .login a{
-	color: #567c8d;
+	color: #000000;
 	text-decoration: none;
 	margin-left: 90px;
 }
 
+.back-link {
+    color: #000000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-left: 90px;
+}
+
+.back-link i {
+    margin-right: 8px; /* Spasi antara ikon dan teks */
+}
+
 .login label{
-	color: #567c8d;
+	color: #2F4156;
 	transform: scale(.6);
 	position: relative;
 	top: 20px;
@@ -147,3 +159,16 @@ button:hover{
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan untuk gambar */
 }
 
+.login input {
+	background-color: #c8d9e6;
+}
+
+.login input::placeholder {
+	color: #2F4156;
+	font-family: 'MADE Sunflower', sans-serif;
+}
+
+.signup input::placeholder {
+	color: #2F4156;
+	font-family: 'MADE Sunflower', sans-serif;
+}

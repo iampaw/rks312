@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from .models import Makanan, makanan2
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 
 
@@ -12,7 +12,20 @@ def home(request):
     return render(request, 'home.html')  # Pastikan Anda memiliki template 'home.html'
 
 def checkout(request):
-    return render(request, 'checkout.html')
+    cart = request.session.get("cart", [])
+    return render(request, "checkout.html", {"cart": cart})
+
+def add_to_cart(request):
+    if request.method == "POST":
+        item = request.POST
+        cart = request.session.get("cart", [])
+        cart.append({
+            "name": item.get("name"),
+            "price": float(item.get("price")),
+            "image": item.get("image"),
+        })
+        request.session["cart"] = cart
+        return JsonResponse({"success": True})
 
 def signup(request):
     if request.method == 'POST':

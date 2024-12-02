@@ -45,3 +45,5 @@ class UserProfileAdmin(admin.ModelAdmin):
         return obj.user.is_active
     is_active.short_description = 'Active'
     is_active.boolean = True
+
+    
