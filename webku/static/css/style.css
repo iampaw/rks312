@@ -536,28 +536,90 @@ html {
     font-weight: bold;
 }
 
-.Sweetery {
+.section {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 180px;
     margin: 40px 0;
+    position: relative;
+    top: -550px;
 }
-
-.Sweetery div {
-    width: 30%;
-    text-align: left;
-}
-
-.section h2 {
-    font-family: 'Georgia', serif;
-    font-size: 24px;
-    color: #2e3a59;
-}
-
 
 .about {
-    position: relative; /* Menjadikan elemen bisa dipindah */
-    top: 30px; /* Geser ke bawah */
-    left: 50px; /* Geser ke kiri */
-    color: #000000;
-    top: -100px;
+    width: 40%;
+    text-align: left;
+    line-height: 1.5;
+    color: #000;
+    font-family: 'MADE Sunflower', sans-serif;
+}
+
+.about h2 {
+    font-size: 36px; /* Mengatur ukuran judul */
+    color: #FF6347; /* Warna merah untuk judul */
+    margin-bottom: 20px; /* Jarak antara judul dan teks */
+    font-family: 'Georgia', serif; /* Font untuk heading */
+}
+
+.about p {
+    font-size: 20px; /* Ukuran teks isi */
+    color: #555; /* Warna teks isi */
+}
+
+.pages {
+    width: 30%;
+    text-align: left;
+    line-height: 2.5;
+}
+
+.pages h2 {
+    font-size: 24px;
+    color: #c85c42;
+    font-family: 'Georgia', serif;
+    margin-bottom: 15px; /* Memberi jarak antara judul dan daftar */
+}
+
+.pages ul {
+    list-style: none;
+    padding: 0;
+}
+
+.pages ul li {
+    margin: 10px 0;
+}
+
+.pages ul li a {
+    text-decoration: none;
+    color: #2e3a59;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.pages ul li a:hover {
+    color: #c85c42;
+    text-decoration: underline;
+}
+
+.contact {
+    width: 36%;
+    text-align: left;
+    position: relative;
+    top: 20px;
+}
+
+.contact h2 {
+    font-size: 24px;
+    color: #c85c42;
+    font-family: 'Georgia', serif;
+    margin-bottom: 15px;
+}
+
+.contact p {
+    font-size: 20px;
+    color: #2e3a59;
+    line-height: 1.5;
+}
+
+.contact i {
+    margin-right: 10px; /* Memberikan jarak di sebelah kanan ikon */
 }
