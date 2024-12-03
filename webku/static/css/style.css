@@ -543,22 +543,24 @@ html {
     gap: 180px;
     margin: 40px 0;
     position: relative;
-    top: -550px;
+    top: -580px;
 }
 
 .about {
-    width: 40%;
-    text-align: left;
+    width: 70%;
+    text-align: justify;
     line-height: 1.5;
     color: #000;
     font-family: 'MADE Sunflower', sans-serif;
+    position: relative;
+    left: 50px;
 }
 
 .about h2 {
-    font-size: 36px; /* Mengatur ukuran judul */
-    color: #FF6347; /* Warna merah untuk judul */
-    margin-bottom: 20px; /* Jarak antara judul dan teks */
-    font-family: 'Georgia', serif; /* Font untuk heading */
+    font-size: 36px;
+    color: #FF6347;
+    margin-bottom: 5px;
+    font-family: 'Georgia', serif;
 }
 
 .about p {
@@ -570,6 +572,8 @@ html {
     width: 30%;
     text-align: left;
     line-height: 2.5;
+    position: relative;
+    left: 200px;
 }
 
 .pages h2 {
@@ -591,7 +595,7 @@ html {
 .pages ul li a {
     text-decoration: none;
     color: #2e3a59;
-    font-size: 16px;
+    font-size: 20px;
     transition: color 0.3s;
 }
 
@@ -601,10 +605,11 @@ html {
 }
 
 .contact {
-    width: 36%;
+    width: 70%;
     text-align: left;
     position: relative;
     top: 20px;
+    left: 300px;
 }
 
 .contact h2 {
@@ -622,4 +627,20 @@ html {
 
 .contact i {
     margin-right: 10px; /* Memberikan jarak di sebelah kanan ikon */
+}
+
+.owners {
+    margin-top: 100px;
+    text-align: center;
+    position: relative;
+    left: -700px;
+    width: 30%;
+    top: 470px;
+    margin-bottom: 100px;
+}
+
+.owners h2 {
+    font-family: 'Georgia', serif;
+    font-size: 24px;
+    color: #b3542e;
 }
