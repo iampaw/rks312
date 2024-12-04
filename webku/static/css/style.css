@@ -9,7 +9,7 @@
 body {
     color: #F1F1F0;
     margin: auto;
-    font-family: 'MADE Sunflower', sans-serif;
+    font-family: 'Kavoon';
     overflow: auto;
     background-color: #f9f0df;
     animation: gradient 15s ease infinite;
@@ -70,6 +70,7 @@ html {
     position: relative;
     top: 250px;
     margin-left: 40px; /* Beri jarak horizontal untuk menyesuaikan tata letak */
+    font-family: 'Kavoon';
 }
 
 .kuekue {
@@ -172,6 +173,7 @@ html {
 .nav-links a{
     color: #344660;
     font-size: 30px;
+    font-family: 'Karma';
 }
 
 .nav-links input[type="text"] {
@@ -186,6 +188,7 @@ html {
     margin-left: 40px;
     font-size: 17px;
     width: 200px; /* Atur lebar input sesuai keinginan */
+    font-family: 'Karma';
 }
 
 .container .fa-search {
@@ -194,7 +197,7 @@ html {
     margin-right: 9px;
     position: relative;
     left: 78px;
-    top: 12px;
+    top: 14px;
 }
 
 .nav-links input[type="text"]::placeholder {
@@ -219,11 +222,11 @@ html {
     flex-wrap: wrap;
 }
 
-.section-baru{
+.section-baru {
     text-align: center;
     font-size: 50px;
     position: relative;
-    top: 120px;
+    top: 140px;
     padding-top: 130px;
     background: #C85C42;
     height: 730px;
@@ -345,15 +348,15 @@ html {
     position: relative;
     text-align: center;
     background-size: 20px;
-    background-color: #F8F0E8; /* Warna latar belakang */
-    padding: 20px; /* Memberikan ruang di sekitar elemen di dalamnya */
-    border-radius: 15px; /* Membuat sudut yang melengkung */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan efek bayangan */
-    margin: 20px; /* Memberi jarak antar item */
+    background-color: #F8F0E8;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
     max-width: 300px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    top: -370px;
+    top: -310px;
     color: #000;
 }
 
@@ -371,9 +374,9 @@ html {
 }
 
 .btn-add-to-card {
-    background-color: #d3d3d3;
+    background-color: #0BB0C8;
     border: none;
-    color: #699a8c;
+    color: #000;
     font-size: 12px;
     font-family: 'MADE Sunflower', sans-serif;
     padding: 10px 30px;
@@ -382,7 +385,6 @@ html {
     margin-top: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
-    left: -75px; /* Center the button */
 }
 
 .btn-add-to-card:hover {
@@ -444,20 +446,6 @@ html {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Menambahkan bayangan lebih besar */
 }
 
-.btn-add-to-card {
-    background-color: #d3d3d3;
-    border: none;
-    color: #699a8c;
-    font-size: 12px;
-    font-family: 'MADE Sunflower', sans-serif;
-    padding: 10px 30px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-    left: -75px; /* Center the button */
-}
 
 .btn-add-to-card:hover {
     background-color: #c0c0c0;
@@ -503,12 +491,14 @@ html {
     color: #F9F0DF; /* Warna berubah saat diarahkan */
 }
 
-/* Judul section */
 .section-baru h4 {
     font-size: 50px;
-    color: #F9F0DF; /* Warna teks utama */
-    margin-bottom: 30px; /* Spasi bawah judul */
+    color: #F9F0DF;
+    margin-bottom: 30px;
     font-weight: bold;
+    position: relative;
+    top: -8px;
+    font-family: 'Karma';
 }
 
 .section2-kedua h3 {
@@ -643,4 +633,25 @@ html {
     font-family: 'Georgia', serif;
     font-size: 24px;
     color: #b3542e;
+}
+
+/*************** CSS *********************/
+/* Untuk nama makanan */
+.makanan-name {
+    font-size: 24px; /* Ukuran font besar agar menonjol */
+    font-weight: bold; /* Membuat teks lebih tebal */
+    color: #333; /* Warna teks gelap untuk kontras */
+    margin-bottom: 5px; /* Jarak bawah dengan elemen berikutnya */
+    font-family: 'Arial', sans-serif; /* Font modern */
+}
+
+/* Untuk harga makanan */
+.makanan-price {
+    font-size: 18px;
+    font-weight: normal;
+    color: #777;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+    left: -50px;
 }

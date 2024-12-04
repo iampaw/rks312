@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Kavoon' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet'>
 </head>
 <body>
     <nav class="navbar">
@@ -89,16 +91,16 @@
     </div>
  
     <div id="category-section" class="section-baru">
-        <h4>BEST SELLERS</h4>
+        <h4>Recommended</h4>
     </div>
-
+  
     <!-- Bagian makanan -->
     <div class="makanan-container">
         {% for makanan in makanan_list %}
             <div class="makanan" id="makanan-{{ forloop.counter }}">
                 <img src="{{ makanan.gambar.url }}" alt="{{ makanan.nama_menu }}">
                 <h1 class="makanan-name">{{ makanan.nama_menu }}</h1>
-                <p>Price: ${{ makanan.harga }}</p>
+                <p class="makanan-price">Rp {{ makanan.harga }}</p>
                 <button class="btn-add-to-card">Add to Cart</button>
             </div>
         {% endfor %}
@@ -131,8 +133,6 @@
     <div id="category-section2" class="section2-kedua">
         <h3>Menu</h3>
     </div>
-
-
     
 <script>
     function filterCategory(category) {
@@ -157,13 +157,14 @@
     <button onclick="filterCategory('minuman')">Minuman</button>
     <button onclick="filterCategory('cake')">Cake</button>
     <button onclick="filterCategory('cookies')">Cookies</button>
+    <button onclick="filterCategory('cookies')">Cookies</button>
 </div>
 <div class="makanan2-category">
     {% for makanan2 in makanan2_list %}
     <div class="makanan2" data-category="{{ makanan2.category }}">
         <img src="{{ makanan2.gambar.url }}" alt="{{ makanan2.nama_category }}">
         <h1 class="makanan-name">{{ makanan2.nama_category }}</h1>
-        <p>Price: ${{ makanan2.harga }}</p>
+        <p class="makanan-price">Rp {{ makanan2.harga }}</p>
         <button class="btn-add-to-card">Add to Cart</button>
     </div>
     {% endfor %}
@@ -245,75 +246,95 @@
         cartItem.remove();
     }
 
-    // Fungsi untuk menambah jumlah item
-    function increaseQuantity(event) {
-        const cartItem = event.target.closest(".cart-item");
-        const quantityDisplay = cartItem.querySelector(".quantity-display");
-        const priceDisplay = cartItem.querySelector(".item-price");
-        const unitPrice = parseFloat(cartItem.getAttribute("data-unit-price"));
+ // Fungsi untuk menambah jumlah item
+function increaseQuantity(event) {
+    const cartItem = event.target.closest(".cart-item");
+    const quantityDisplay = cartItem.querySelector(".quantity-display");
+    const priceDisplay = cartItem.querySelector(".item-price");
+    const unitPrice = parseFloat(cartItem.getAttribute("data-unit-price"));
 
-        let quantity = parseInt(quantityDisplay.textContent);
-        quantity++;
+    let quantity = parseInt(quantityDisplay.textContent);
+    quantity++;
+    quantityDisplay.textContent = quantity;
+
+    // Format harga sebagai Rupiah
+    priceDisplay.textContent = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0
+    }).format(unitPrice * quantity);
+}
+
+// Fungsi untuk mengurangi jumlah item
+function decreaseQuantity(event) {
+    const cartItem = event.target.closest(".cart-item");
+    const quantityDisplay = cartItem.querySelector(".quantity-display");
+    const priceDisplay = cartItem.querySelector(".item-price");
+    const unitPrice = parseFloat(cartItem.getAttribute("data-unit-price"));
+
+    let quantity = parseInt(quantityDisplay.textContent);
+
+    if (quantity > 1) {
+        quantity--;
         quantityDisplay.textContent = quantity;
 
-        priceDisplay.textContent = `Rp ${(unitPrice * quantity).toFixed(2)}`;
+        // Format harga sebagai Rupiah
+        priceDisplay.textContent = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 0
+        }).format(unitPrice * quantity);
+    } else {
+        removeCartItem(cartItem);
     }
+}
 
-    // Fungsi untuk mengurangi jumlah item
-    function decreaseQuantity(event) {
-        const cartItem = event.target.closest(".cart-item");
-        const quantityDisplay = cartItem.querySelector(".quantity-display");
-        const priceDisplay = cartItem.querySelector(".item-price");
-        const unitPrice = parseFloat(cartItem.getAttribute("data-unit-price"));
+// Fungsi untuk menambahkan item ke keranjang
+function addToCart(event) {
+    const makananElement = event.target.closest(".makanan, .makanan2");
+    const itemName = makananElement.querySelector(".makanan-name").textContent;
+    const itemPrice = parseFloat(makananElement.querySelector("p").textContent.replace(/[^0-9.-]+/g, ""));
+    const itemImageSrc = makananElement.querySelector("img").src;
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingCartItem = Array.from(cartItemsContainer.children).find(item => 
+        item.querySelector("h4").textContent === itemName
+    );
 
-        let quantity = parseInt(quantityDisplay.textContent);
-        
-        if (quantity > 1) {
-            quantity--;
-            quantityDisplay.textContent = quantity;
-            priceDisplay.textContent = `Rp ${(unitPrice * quantity).toFixed(2)}`;
-        } else {
-            removeCartItem(cartItem);
-        }
-    }
+    if (existingCartItem) {
+        const quantityDisplay = existingCartItem.querySelector(".quantity-display");
+        quantityDisplay.textContent = parseInt(quantityDisplay.textContent) + 1;
+        const priceDisplay = existingCartItem.querySelector(".item-price");
+        const unitPrice = parseFloat(existingCartItem.getAttribute("data-unit-price"));
+        const newQuantity = parseInt(quantityDisplay.textContent);
 
-    // Fungsi untuk menambahkan item ke keranjang
-    function addToCart(event) {
-        const makananElement = event.target.closest(".makanan, .makanan2");
-        const itemName = makananElement.querySelector(".makanan-name").textContent;
-        const itemPrice = parseFloat(makananElement.querySelector("p").textContent.replace(/[^0-9.-]+/g,""));
-        const itemImageSrc = makananElement.querySelector("img").src;
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        // Cek apakah item sudah ada di keranjang
-        const existingCartItem = Array.from(cartItemsContainer.children).find(item => 
-            item.querySelector("h4").textContent === itemName
-        );
-
-        if (existingCartItem) {
-            const quantityDisplay = existingCartItem.querySelector(".quantity-display");
-            quantityDisplay.textContent = parseInt(quantityDisplay.textContent) + 1;
-            const priceDisplay = existingCartItem.querySelector(".item-price");
-            const unitPrice = parseFloat(existingCartItem.getAttribute("data-unit-price"));
-            const newQuantity = parseInt(quantityDisplay.textContent);
-            priceDisplay.textContent = `Rp ${(unitPrice * newQuantity).toFixed(2)}`;
-        } else {
-            const cartItem = document.createElement("div");
-            cartItem.classList.add("cart-item");
-            cartItem.setAttribute("data-unit-price", itemPrice);
-            cartItem.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 10px; width: 100%;">
-                    <img src="${itemImageSrc}" alt="${itemName}" width="50" height="50">
-                    <div style="flex-grow: 1;">
-                        <h4>${itemName}</h4>
-                        <p class="item-price">Rp ${itemPrice.toFixed(2)}</p>
-                    </div>
-                    <div class="quantity-controls" style="display: flex; align-items: center; gap: 5px;">
-                        <button class="quantity-btn decrease-btn">-</button>
-                        <span class="quantity-display">1</span>
-                        <button class="quantity-btn increase-btn">+</button>
-                    </div>
+        // Format harga sebagai Rupiah
+        priceDisplay.textContent = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 0
+        }).format(unitPrice * newQuantity);
+    } else {
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+        cartItem.setAttribute("data-unit-price", itemPrice);
+        cartItem.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                <img src="${itemImageSrc}" alt="${itemName}" width="50" height="50">
+                <div style="flex-grow: 1;">
+                    <h4>${itemName}</h4>
+                    <p class="item-price">${new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0
+                    }).format(itemPrice)}</p>
                 </div>
-            `;
+                <div class="quantity-controls" style="display: flex; align-items: center; gap: 5px;">
+                    <button class="quantity-btn decrease-btn">-</button>
+                    <span class="quantity-display">1</span>
+                    <button class="quantity-btn increase-btn">+</button>
+                </div>
+            </div>
+        `;
 
             const increaseButton = cartItem.querySelector(".increase-btn");
             const decreaseButton = cartItem.querySelector(".decrease-btn");
