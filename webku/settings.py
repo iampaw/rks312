@@ -79,14 +79,10 @@ WSGI_APPLICATION = 'webku.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'secondary': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'databaserks312',
-        'USER': 'rks312',
-        'PASSWORD': 'rks312',
+        'NAME': 'ecommerce',
+        'USER': 'superuser',
+        'PASSWORD': 'pblrks312',
         'HOST': 'localhost',
         'PORT': '3306',
     }
