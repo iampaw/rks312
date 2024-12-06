@@ -631,13 +631,10 @@ html {
 }
 
 .owners {
-    margin-top: 100px;
-    text-align: center;
-    position: relative;
-    left: -700px;
-    width: 30%;
-    top: 470px;
     margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .owners h2 {
@@ -665,4 +662,30 @@ html {
     font-family: 'Arial', sans-serif;
     position: relative;
     left: -50px;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.profile {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px;
+    text-align: center;
+}
+.profile img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.profile .name {
+    font-weight: bold;
+    margin-top: 10px;
+}
+.profile .id {
+    color: #666;
 }

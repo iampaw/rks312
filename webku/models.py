@@ -3,6 +3,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
+from django.utils.timezone import now
 
 class Makanan(models.Model):
     nama_menu = models.CharField(max_length=100)
@@ -27,7 +28,7 @@ class makanan2(models.Model):
     def __str__(self):
         return self.nama_category
 
-class UserProfileAdmin(admin.ModelAdmin):
+class UserProfileAdmin(models.Model):
     list_display = ('user', 'full_name', 'user_email', 'last_login', 'is_active')
 
     # Fungsi untuk menampilkan email dari User
@@ -46,4 +47,11 @@ class UserProfileAdmin(admin.ModelAdmin):
     is_active.short_description = 'Active'
     is_active.boolean = True
 
-    
+class LoginHistory(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='login_history')
+    email = models.EmailField()
+    login_time = models.DateTimeField(default=now)
+    ip_address = models.GenericIPAddressField()
+
+    def __str__(self):
+        return f"{self.user.username} logged in at {self.login_time}"
