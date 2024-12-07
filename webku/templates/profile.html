@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile-info">
+                <img src="https://placehold.co/50x50" alt="User profile picture" width="50" height="50">
+                <h2>{{ user.username }}</h2>
+            </div>
+            <ul>
+                <li><a href="#" class="active"><i class="fas fa-user"></i> MyAccount</a></li>
+                <li><a href="#"><i class="fas fa-user-edit"></i> Profil</a></li>
+                <li><a href="#"><i class="fas fa-map-marker-alt"></i> Address</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1>My Profil</h1>
+            <p>Manage and protect your account</p>
+            <hr>
+            <form>
+                <div class="profile-container">
+                    <div class="profile-section">
+                        <label>Username</label>
+                        <span>{{ request.user.username }}</span>
+                    </div>
+                    <div class="profile-section">
+                        <label>Email</label>
+                        <span>{{ request.user.email }}</span>
+                        <a href="#">Change</a>
+                    </div>
+                    <div class="profile-section">
+                        <label>Phone Number</label>
+                        <span>{{ profile.phone_number }}</span>
+                        <a href="#">Change</a>
+                    </div>
+                    <div class="profile-section">
+                        <label>Gender</label>
+                        <div class="gender-options">
+                            <input type="radio" name="gender" {% if profile.gender == 'Male' %}checked{% endif %}> Male
+                            <input type="radio" name="gender" {% if profile.gender == 'Female' %}checked{% endif %}> Female
+                            <input type="radio" name="gender" {% if profile.gender == 'Other' %}checked{% endif %}> Other
+                        </div>
+                    </div>
+                    <div class="profile-section">
+                        <label>Date Of Birth</label>
+                        <input type="date" value="{{ profile.birth_date|date:'Y-m-d' }}">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit">Save Changes</button>
+                    </div>
+                </div>
+            </body>
+            </html>

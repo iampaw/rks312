@@ -55,3 +55,13 @@ class LoginHistory(models.Model):
 
     def __str__(self):
         return f"{self.user.username} logged in at {self.login_time}"
+    
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=15, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+    gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')], default='Male')
+
+    def __str__(self):
+        return self.user.username
