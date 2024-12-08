@@ -294,7 +294,7 @@ html {
 }
 
 .quantity-btn {
-    background-color: #9dbdba;
+    background-color: #344660;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
@@ -302,7 +302,6 @@ html {
     border-radius: 5px;
     font-weight: bold;
 }
-
 
  /***********************************************/
 
@@ -689,3 +688,5 @@ html {
 .profile .id {
     color: #666;
 }
+
+

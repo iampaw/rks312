@@ -20,6 +20,8 @@ body {
 .profile-info {
     display: flex;
     align-items: center;
+    margin-top: 90px;
+    margin-left: 50px;
 }
 
 .profile-info img {
@@ -36,8 +38,9 @@ body {
 .sidebar ul {
     list-style: none;
     padding: 0;
-    margin-top: 20px;
-}
+    margin-top: 70px;
+    margin-left: 60px;
+}   
 
 .sidebar ul li {
     margin: 20px 0;
@@ -60,12 +63,12 @@ body {
 }
 
 .content {
-    width: 80%;
-    background-color: #fff;
+    width: 70%;
     padding: 40px;
+    background-color: #fff;
     box-sizing: border-box;
     border-radius: 10px;
-    margin: auto;
+    margin: 50px;
 }
 
 .content h1 {
@@ -103,7 +106,6 @@ body {
 .content form input[type="date"],
 .content form input[type="radio"] {
     padding: 5px;
-    width: 100%;
     margin-top: 5px;
 }
 

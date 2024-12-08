@@ -12,8 +12,29 @@
     <div class="container">
         <div class="sidebar">
             <div class="profile-info">
-                <img src="https://placehold.co/50x50" alt="User profile picture" width="50" height="50">
+                <img id="profile-pic" src="https://placehold.co/50x50" alt="User profile picture" width="50" height="50" onclick="changeProfilePic()">
+        
+                <!-- Input file tersembunyi untuk mengganti gambar -->
+         <input type="file" id="file-input" style="display:none;" onchange="updateProfilePic(event)">
                 <h2>{{ user.username }}</h2>
+                <script>
+                    // Fungsi untuk membuka dialog pemilihan gambar saat gambar profil diklik
+                    function changeProfilePic() {
+                        document.getElementById('file-input').click();
+                    }
+            
+                    // Fungsi untuk memperbarui gambar profil dengan gambar yang dipilih
+                    function updateProfilePic(event) {
+                        const file = event.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                document.getElementById('profile-pic').src = e.target.result;
+                            }
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                </script>
             </div>
             <ul>
                 <li><a href="#" class="active"><i class="fas fa-user"></i> MyAccount</a></li>
