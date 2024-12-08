@@ -344,10 +344,9 @@ html {
 }
 
 .makanan {
-    position: relative;
     text-align: center;
     background-size: 20px;
-    background-color: #F8F0E8;
+    background-color: rgba(255, 255, 255, 0.58);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -420,11 +419,11 @@ html {
     position: relative;
     text-align: center;
     background-size: 20px;
-    background-color: #F8F0E8; /* Warna latar belakang */
-    padding: 20px; /* Memberikan ruang di sekitar elemen di dalamnya */
-    border-radius: 15px; /* Membuat sudut yang melengkung */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan efek bayangan */
-    margin: 20px; /* Memberi jarak antar item */
+    background-color: rgba(255, 255, 255, 0.58);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
     max-width: 300px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     top: -800px;
@@ -609,7 +608,6 @@ html {
     text-align: left;
     position: relative;
     top: 20px;
-    left: 300px;
 }
 
 .contact h2 {
@@ -634,6 +632,8 @@ html {
     display: flex;
     justify-content: center;
     width: 100%;
+    position: relative;
+    top: 0px;
 }
 
 .owners h2 {
@@ -690,3 +690,24 @@ html {
 }
 
 
+.header-icon {
+    text-align: right;
+    margin: 20px;
+
+}
+
+#toggle-bar {
+    background-color: rgb(244, 219, 166); /* Gaya background untuk toggle bar */
+    padding: 10px; /* Beberapa padding */
+    border: 4px solid rgb(140, 75, 0); /* Garis batas */
+    border-radius: 15px;
+    position: absolute; /* Agar tidak mempengaruhi layout */
+}
+#toggle-bar a {
+    display: none;
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    align-items: flex-start;
+    font-size: 20px;
+}

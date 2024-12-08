@@ -19,8 +19,8 @@ class makanan2(models.Model):
     gambar = models.ImageField(upload_to='category_makanan/')
     category = models.CharField(max_length=50, default='', choices=[
         ('Ice Cream', 'Ice Cream'),
-        ('Maccarone', 'Minuman'),
-        ('cookies', 'cookies'),
+        ('Maccarone', 'Maccarone'),
+        ('Cookies', 'Cookies'),
     
 
     ])
@@ -59,9 +59,9 @@ class LoginHistory(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=15, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
-    gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')], default='Male')
+    phone_number = models.CharField(max_length=15)
+    gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')])
+    birth_date = models.DateField()
 
     def __str__(self):
         return self.user.username

@@ -40,43 +40,65 @@
                 <li><a href="#" class="active"><i class="fas fa-user"></i> MyAccount</a></li>
                 <li><a href="#"><i class="fas fa-user-edit"></i> Profil</a></li>
                 <li><a href="#"><i class="fas fa-map-marker-alt"></i> Address</a></li>
+                <li><a href="/"><i class="fas fa-back-to-home"></i> Back To Home</a></li>
             </ul>
         </div>
         <div class="content">
             <h1>My Profil</h1>
             <p>Manage and protect your account</p>
             <hr>
-            <form>
+            <form method="POST">
+                {% csrf_token %}
+                
                 <div class="profile-container">
                     <div class="profile-section">
                         <label>Username</label>
-                        <span>{{ request.user.username }}</span>
+                        <span>{{ user.username }}</span>
                     </div>
+                    
                     <div class="profile-section">
                         <label>Email</label>
-                        <span>{{ request.user.email }}</span>
+                        <span>{{ user.email }}</span>
                         <a href="#">Change</a>
                     </div>
+                    
                     <div class="profile-section">
                         <label>Phone Number</label>
-                        <span>{{ profile.phone_number }}</span>
-                        <a href="#">Change</a>
+                        {% if profile.phone_number %}
+                            <span>{{ profile.phone_number }}</span>
+                        {% else %}
+                            <input type="text" name="phone_number" value="{{ profile.phone_number }}">
+                        {% endif %}
                     </div>
+                    
                     <div class="profile-section">
                         <label>Gender</label>
-                        <div class="gender-options">
-                            <input type="radio" name="gender" {% if profile.gender == 'Male' %}checked{% endif %}> Male
-                            <input type="radio" name="gender" {% if profile.gender == 'Female' %}checked{% endif %}> Female
-                            <input type="radio" name="gender" {% if profile.gender == 'Other' %}checked{% endif %}> Other
-                        </div>
+                        {% if profile.gender %}
+                            <span>{{ profile.get_gender_display }}</span>
+                        {% else %}
+                            <div class="gender-options">
+                                <input type="radio" name="gender" value="Male" {% if profile.gender == 'Male' %}checked{% endif %}> Male
+                                <input type="radio" name="gender" value="Female" {% if profile.gender == 'Female' %}checked{% endif %}> Female
+                                <input type="radio" name="gender" value="Other" {% if profile.gender == 'Other' %}checked{% endif %}> Other
+                            </div>
+                        {% endif %}
                     </div>
+                    
                     <div class="profile-section">
                         <label>Date Of Birth</label>
-                        <input type="date" value="{{ profile.birth_date|date:'Y-m-d' }}">
+                        {% if profile.birth_date %}
+                            <span>{{ profile.birth_date|date:'Y-m-d' }}</span>
+                        {% else %}
+                            <input type="date" name="birth_date" value="{{ profile.birth_date|date:'Y-m-d' }}">
+                        {% endif %}
                     </div>
+                    
                     <div class="form-actions">
                         <button type="submit">Save Changes</button>
                     </div>
                 </div>
-            </body>
-            </html>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

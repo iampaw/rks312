@@ -2,16 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
-from .models import Makanan, makanan2, LoginHistory
+from .models import Makanan, makanan2, LoginHistory, Profile
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from django.utils.timezone import now
 import logging
-logger = logging.getLogger(__name__)
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm, UserUpdateForm
-from .models import Profile
 
+logger = logging.getLogger(__name__)
 
 def profile(request):
     return render(request, 'profile.html')
@@ -124,26 +123,18 @@ def home_page(request):
 
 @login_required
 def profile_view(request):
-    profile = Profile.objects.get(user=request.user)
-
+    profile = Profile.objects.get(user=request.user)  # Ambil data profile yang terkait dengan user yang sedang login
     if request.method == 'POST':
-        # Form untuk mengupdate profil tambahan (phone number, gender, birth date)
-        profile_form = ProfileForm(request.POST, instance=profile)
-        user_form = UserUpdateForm(request.POST, instance=request.user)
+        phone_number = request.POST.get('phone_number')
+        gender = request.POST.get('gender')
+        birth_date = request.POST.get('birth_date')
+        
+        # Update data profile
+        profile.phone_number = phone_number
+        profile.gender = gender
+        profile.birth_date = birth_date
+        profile.save()
+        
+        return redirect('profile')  # Redirect ke halaman profile setelah update
 
-        if profile_form.is_valid() and user_form.is_valid():
-            # Simpan perubahan profil
-            profile_form.save()
-            # Simpan perubahan user (username, email)
-            user_form.save()
-            return redirect('profile')  # Redirect ke halaman profil setelah perubahan disimpan
-    else:
-        # Menampilkan form dengan data yang sudah ada
-        profile_form = ProfileForm(instance=profile)
-        user_form = UserUpdateForm(instance=request.user)
-
-    return render(request, 'profile.html', {
-        'profile_form': profile_form,
-        'user_form': user_form,
-        'profile': profile
-    })
+    return render(request, 'profile.html', {'profile': profile})
