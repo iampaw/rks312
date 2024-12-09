@@ -65,3 +65,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+class Address(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=255)
+    phone = models.CharField(max_length=20)
+    province = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    postal_code = models.CharField(max_length=10)
+    housing_address = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.full_name

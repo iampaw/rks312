@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
-from .models import Makanan, makanan2, LoginHistory, Profile
+from .models import Makanan, makanan2, LoginHistory, Profile, Address
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from django.utils.timezone import now
 import logging
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm, UserUpdateForm
+from .forms import AddressForm
 
 logger = logging.getLogger(__name__)
 
@@ -141,3 +142,35 @@ def profile_view(request):
         return redirect('profile')  # Redirect ke halaman profile setelah update
 
     return render(request, 'profile.html', {'profile': profile})
+
+@login_required
+def address_view(request):
+    if request.method == 'POST':
+        # Mengambil data dari request.POST
+        full_name = request.POST.get('full_name')
+        phone = request.POST.get('phone')
+        province = request.POST.get('province')
+        city = request.POST.get('city')
+        postal_code = request.POST.get('postal_code')
+        housing_address = request.POST.get('housing_address')
+
+        # Validasi data (bisa disesuaikan dengan kebutuhan)
+        if full_name and phone and province and city and postal_code and housing_address:
+            # Menyimpan data ke database
+            address = Address(
+                user=request.user,  # Pastikan menyimpan data dengan user yang sedang login
+                full_name=full_name,
+                phone=phone,
+                province=province,
+                city=city,
+                postal_code=postal_code,
+                housing_address=housing_address
+            )
+            address.save()
+            return redirect('address')  # Setelah berhasil simpan, redirect ke halaman yang sama
+        else:
+            # Jika ada data yang kosong, bisa menambahkan pesan error atau penanganan lainnya
+            error_message = 'Please fill out all fields.'
+            return render(request, 'address.html', {'error_message': error_message})
+    else:
+        return render(request, 'address.html')
