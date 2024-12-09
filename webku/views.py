@@ -22,6 +22,9 @@ def checkout(request):
     cart = request.session.get("cart", [])
     return render(request, "checkout.html", {"cart": cart})
 
+def address_view(request):
+    return render(request, 'address.html')
+
 def add_to_cart(request):
     if request.method == "POST":
         item = request.POST

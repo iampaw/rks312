@@ -37,9 +37,9 @@
                 </script>
             </div>
             <ul>
-                <li><a href="#" class="active"><i class="fas fa-user"></i> MyAccount</a></li>
-                <li><a href="#"><i class="fas fa-user-edit"></i> Profil</a></li>
-                <li><a href="#"><i class="fas fa-map-marker-alt"></i> Address</a></li>
+                 <li><a href="#" onclick="showSection('account')"><i class="fas fa-user"></i> MyAccount</a></li>
+                <li><a href="{% url 'profile' %}"><i class="fas fa-user-edit"></i> Profile</a></li>
+                <li><a href="{% url 'address' %}"><i class="fas fa-map-marker-alt"></i> Address</a></li>
                 <li><a href="/"><i class="fas fa-back-to-home"></i> Back To Home</a></li>
             </ul>
         </div>

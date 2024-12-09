@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address</title>
+    <link rel="stylesheet" href="{% static 'css/address.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile-info">
+                <img id="profile-pic" src="https://placehold.co/50x50" alt="User profile picture" width="50" height="50" onclick="changeProfilePic()">
+        
+                <!-- Input file tersembunyi untuk mengganti gambar -->
+                <input type="file" id="file-input" style="display:none;" onchange="updateProfilePic(event)">
+                <h2>{{ user.username }}</h2>
+                <script>
+                    // Fungsi untuk membuka dialog pemilihan gambar saat gambar profil diklik
+                    function changeProfilePic() {
+                        document.getElementById('file-input').click();
+                    }
+            
+                    // Fungsi untuk memperbarui gambar profil dengan gambar yang dipilih
+                    function updateProfilePic(event) {
+                        const file = event.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                document.getElementById('profile-pic').src = e.target.result;
+                            }
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                </script>
+            </div>
+            <ul>
+                <li><a href="#" onclick="showSection('account')"><i class="fas fa-user"></i> MyAccount</a></li>
+                <li><a href="{% url 'profile' %}"><i class="fas fa-user-edit"></i> Profile</a></li>
+                <li><a href="{% url 'address' %}"><i class="fas fa-map-marker-alt"></i> Address</a></li>
+                <li><a href="/"><i class="fas fa-back-to-home"></i> Back To Home</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1>My Address</h1>
+            <p>Manage and protect your account</p>
+            <hr>
+            <div class="address-section">
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="full-name">Nama Lengkap</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>     
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="province">Provinsi</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Kota</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postal-code">Kode Pos</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="housing">Alamat Rumah</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f8f1e4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #f8f1e4;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    margin-top: 90px;
+    margin-left: 50px;
+}
+
+.profile-info img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.profile-info h2 {
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 70px;
+    margin-left: 60px;
+}   
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+
+.sidebar ul li a.active {
+    color: #d9534f;
+}
+
+.content {
+    width: 70%;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin: 50px;
+}
+
+.content h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.content hr {
+    border: 0;
+    border-top: 1px solid #000;
+    margin: 20px 0;
+}
+
+.content form {
+    font-size: 16px;
+}
+
+.content form div {
+    margin-bottom: 20px;
+}
+
+.content form label {
+    display: inline-block;
+    width: 150px;
+    font-weight: bold;
+}
+
+.content form input[type="text"],
+.content form input[type="email"],
+.content form input[type="date"],
+.content form input[type="radio"] {
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.content form input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+.content form a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.content form .form-actions {
+    text-align: center;
+}
+
+.content form button {
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.content form button:hover {
+    background-color: #34495e;
+}
+
+/* Custom Styles for Profile Section */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-section {
+    margin-bottom: 20px;
+}
+
+.profile-section label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.profile-section span {
+    font-size: 16px;
+    color: #555;
+}
+
+.profile-section a {
+    color: #007bff;
+    font-size: 14px;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.profile-section a:hover {
+    text-decoration: underline;
+}
+
+/* Align Radio buttons properly for Gender */
+.gender-options {
+    display: flex;
+    align-items: center;
+}
+
+.gender-options input {
+    margin-right: 15px;
+}
+
+.profile-section input[type="date"] {
+    padding: 8px;
+    width: 200px;
+    margin-top: 5px;
+}
+
+.form-actions button {
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
