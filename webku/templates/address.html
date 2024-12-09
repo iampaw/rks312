@@ -7,6 +7,7 @@
     <title>Address</title>
     <link rel="stylesheet" href="{% static 'css/address.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -43,9 +44,42 @@
                         <label for="phone">Phone Number</label>
                         <input type="tel" name="phone" required>
                     </div>
+                    <script>
+                        // Initialize the intl-tel-input library for Indonesia only
+                        var input = document.querySelector("#phone");
+                        var iti = intlTelInput(input, {
+                            onlyCountries: ["id"], // Restrict country selection to Indonesia only
+                            separateDialCode: true,  // Display the dial code separately
+                            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js", // For formatting the number
+                        });
+                    
+                        // Optionally, you can add validation to make sure the phone number is valid
+                        input.addEventListener('blur', function() {
+                            if (!iti.isValidNumber()) {
+                                alert('Please enter a valid Indonesian phone number');
+                            }
+                        });
+                    </script>
                     <div class="form-group">
                         <label for="province">Provinsi</label>
-                        <input type="text" name="province" required>
+                        <input type="text" name="province" id="province" list="provinces" required>
+                        <datalist id="provinces">
+                            <!-- Daftar provinsi akan dimuat melalui JavaScript -->
+                        </datalist>
+                        <script>
+                            const provinces = [
+                                "Batam (Kota)", "Bintan (Kabupaten)", "Karimun (Kabupaten)", "Lingga (Kabupaten)", "Natuna (Kabupaten)", "Anambas (Kabupaten)"
+                            ]; 
+                    
+                            const provinceInput = document.getElementById('province');
+                            const datalist = document.getElementById('provinces');
+                    
+                            provinces.forEach(province => {
+                                const option = document.createElement('option');
+                                option.value = province;
+                                datalist.appendChild(option);
+                            });
+                        </script>
                     </div>
                     <div class="form-group">
                         <label for="city">Kota</label>
@@ -53,7 +87,32 @@
                     </div>
                     <div class="form-group">
                         <label for="postal-code">Kode Pos</label>
-                        <input type="text" name="postal_code" required>
+                        <input type="text" name="postal_code" id="postal_code" list="postal_codes" required>
+                        <datalist id="postal_codes">
+                            <option value="29411">
+                            <option value="29461">
+                            <option value="29427">
+                            <option value="29465">
+                            <option value="29425">
+                            <option value="29422">
+                            <option value="29444">
+                            <option value="29430"> 
+                            <option value="29412">
+                            <option value="29475">
+                        </datalist>
+                        <script>
+                            const postalCodes = [
+                                "29411", "29461", "29427", "29465", "29425", "29422", "29444", "29430", "29412", "29475"
+                            ]; 
+                    
+                            const postalCodeInput = document.getElementById('postal_code');
+                            const postalCodeDatalist = document.getElementById('postal_codes');
+                            postalCodes.forEach(code => {
+                                const option = document.createElement('option');
+                                option.value = code;
+                                postalCodeDatalist.appendChild(option);
+                            });
+                        </script>
                     </div>
                     <div class="form-group">
                         <label for="housing">Alamat Rumah</label>

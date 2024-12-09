@@ -36,8 +36,13 @@
                 </a>
                 <div id="toggle-bar" style="display: none;">
                     <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'signup' %}">Sign In</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    <li>
+                        {% if user.is_authenticated %}
+                          <a href="{% url 'logout' %}">Log Out</a>
+                        {% else %}
+                          <a href="{% url 'signup' %}">Sign Up</a>
+                        {% endif %}
+                      </li>
                 </div>
                 <script>
                     function toggleBar() {

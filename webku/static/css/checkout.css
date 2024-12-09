@@ -7,6 +7,10 @@ body {
     top: 100px;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* Cart Container */
 .cart-container {
     max-width: 800px;

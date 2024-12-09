@@ -5,6 +5,10 @@ body {
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .container {
     display: flex;
     height: 100vh;

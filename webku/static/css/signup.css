@@ -11,6 +11,11 @@ body {
     background-position: center; /* Posisi gambar di tengah */
     background-repeat: no-repeat; /* Mencegah pengulangan gambar */
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
 .main{
 	width: 450px;
 	height: 500px;
