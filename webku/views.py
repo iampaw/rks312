@@ -17,7 +17,9 @@ def profile(request):
     return render(request, 'profile.html')
 
 def home(request):
-    return render(request, 'home.html')  # Pastikan Anda memiliki template 'home.html'
+    return render(request, 'home.html', {
+        'user_authenticated': request.user.is_authenticated
+    })  # Pastikan Anda memiliki template 'home.html'
 
 def checkout(request):
     cart = request.session.get("cart", [])
@@ -26,6 +28,7 @@ def checkout(request):
 def address_view(request):
     return render(request, 'address.html')
 
+@login_required
 def add_to_cart(request):
     if request.method == "POST":
         item = request.POST
@@ -37,6 +40,9 @@ def add_to_cart(request):
         })
         request.session["cart"] = cart
         return JsonResponse({"success": True})
+    else:
+        # Jika user tidak login, redirect ke halaman signup
+        return redirect('signup')  # Atau bisa juga 'login' jika ingin halaman login terlebih dahulu
 
 def signup(request):
     if request.method == 'POST':
@@ -71,30 +77,24 @@ def signup(request):
 
     return render(request, 'signup.html')
 
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-        logger.info(f"IP Address obtained from X-Forwarded-For: {ip}")
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-        logger.info(f"IP Address obtained from REMOTE_ADDR: {ip}")
-    return ip
-
 def user_login(request):
     if request.method == "POST":
+        # Mendapatkan data username dan password dari form POST
         username = request.POST.get('username')
         password = request.POST.get('password')
+        
+        # Mencoba untuk mengautentikasi pengguna
         user = authenticate(request, username=username, password=password)
-
+        
         if user is not None:
+            # Jika autentikasi berhasil, login pengguna
             login(request, user)
 
-            # Log jika login berhasil
-            logger.info(f"User {username} logged in successfully.")
+            # Log keberhasilan login
+            logger.info(f"User {username} berhasil login.")
             logger.info(f"Email: {user.email}, IP: {get_client_ip(request)}")
 
-            # Simpan riwayat login
+            # Simpan riwayat login ke database
             try:
                 LoginHistory.objects.create(
                     user=user,
@@ -102,15 +102,23 @@ def user_login(request):
                     login_time=now(),
                     ip_address=get_client_ip(request)
                 )
-                logger.info("Login history saved successfully.")
+                logger.info("Riwayat login berhasil disimpan.")
             except Exception as e:
-                logger.error(f"Error saving login history: {str(e)}")
+                logger.error(f"Error saat menyimpan riwayat login: {str(e)}")
 
-            return redirect('home')  # Redirect ke halaman home setelah login
+            # Redirect pengguna ke halaman 'next' atau halaman home
+            next_url = request.GET.get('next', 'home')  # Jika tidak ada 'next', default ke 'home'
+            return redirect(next_url)
+
         else:
-            logger.warning(f"Login failed for {username}.")
-            messages.error(request, "Invalid username or password.")
-            return redirect('signup')
+            # Jika autentikasi gagal, log kegagalan login
+            logger.warning(f"Login gagal untuk {username}.")
+            messages.error(request, "Username atau password tidak valid.")
+            return redirect('login')  # Kembali ke halaman login untuk mencoba lagi
+
+    # Jika request menggunakan metode GET, tampilkan halaman login
+    return render(request, 'login.html')
+        
 def logout_view(request):
     logout(request)
     return redirect('home')  # Alihkan ke homepage setelah logout
@@ -174,3 +182,11 @@ def address_view(request):
             return render(request, 'address.html', {'error_message': error_message})
     else:
         return render(request, 'address.html')
+    
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip

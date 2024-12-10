@@ -91,8 +91,50 @@
             <!-- Isi keranjang belanja akan ditampilkan di sini -->
         </div>
         <div class="cart-footer">
-            <button class="close-btn">CLOSE</button>
-            <a href="{% url 'checkout' %}" class="checkout-btn">Check Out</a>
+            {% if user.is_authenticated %}
+                <button class="close-btn">CLOSE</button>
+                <a href="{% url 'checkout' %}" class="checkout-btn">Check Out</a>
+            {% else %}
+                <a href="{% url 'signup' %}" class="checkout-btn">Daftar untuk Checkout</a> <!-- Ganti 'login' menjadi 'signup' -->
+            {% endif %}
+        </div>
+        
+        <div id="empty-cart-popup" class="popup hidden">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <span class="popup-icon">⚠️</span>
+                </div>
+                <div class="popup-message">
+                    <strong>Keranjang belanja kosong!</strong><br>
+                    Anda tidak bisa melanjutkan checkout karena keranjang belanja Anda kosong.
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            // Cek ketika tombol checkout diklik
+            document.querySelector('.checkout-btn').addEventListener('click', function (event) {
+                {% if user.is_authenticated %}  // Cek jika user sudah login
+                    const cartItems = document.querySelectorAll('.cart-item');  // Ganti dengan selector item keranjang yang tepat
+                    
+                    // Jika keranjang kosong, tampilkan pop-up
+                    if (cartItems.length === 0) {
+                        event.preventDefault();  // Prevent navigating to checkout
+                        
+                        // Tampilkan pop-up jika keranjang kosong
+                        const popup = document.getElementById('empty-cart-popup');
+                        popup.classList.add('show');  // Show pop-up dengan animasi
+                        
+                        // Menyembunyikan pop-up setelah 3 detik
+                        setTimeout(() => {
+                            popup.classList.remove('show');  // Hide pop-up setelah 3 detik
+                        }, 3000);
+                    }
+                {% else %}  // Jika user belum login, arahkan ke halaman signup
+                    window.location.href = "{% url 'signup' %}";  // Ganti dengan URL signup Anda
+                {% endif %}
+            });
+        </script>
         </div>
     </div>
     <div class="description">

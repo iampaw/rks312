@@ -23,9 +23,18 @@
                 <!-- Item 1 -->
                 
                 <div class="header">
-                    <button class="back-button" onclick="goBack()">
+                    <button class="back-button" onclick="window.location.href='{% url 'home' %}'">
                         &#8592; <!-- Panah ke kiri -->
                     </button>
+                
+                    <h1>Your Details Order</h1>
+                </div>
+                
+                <script>
+                    function goToHome() {
+                        window.location.href = "home.html";
+                    }
+                </script>
                     <h1>Your Details Order</h1>
                 </div>
                 <!-- Item 2 -->
@@ -51,7 +60,7 @@
     
         let totalAmount = 0;
     
-        cartItems.forEach(item => {
+        cartItems.forEach((item, index) => {
             const row = document.createElement("tr");
             const itemTotal = item.price * item.quantity;
     
@@ -62,6 +71,7 @@
                 <td>Rp ${item.price.toFixed(2)}</td>
                 <td>${item.quantity}</td>
                 <td>Rp ${itemTotal.toFixed(2)}</td>
+                <td><button class="remove-item-btn" data-index="${index}">Hapus</button></td>
             `;
     
             cartItemsContainer.appendChild(row);
@@ -69,18 +79,28 @@
             totalAmount += itemTotal;
         });
     
-        // Tambahkan total pembayaran
+        // Menampilkan total pembayaran
         const totalRow = document.createElement("tr");
         totalRow.innerHTML = `
-            <td colspan="3" style="text-align: right;"><strong>Total:</strong></td>
+            <td colspan="4" style="text-align: right;"><strong>Total:</strong></td>
             <td><strong>Rp ${totalAmount.toFixed(2)}</strong></td>
         `;
         cartItemsContainer.appendChild(totalRow);
-    });
-    document.querySelector(".checkout-btn").addEventListener("click", function() {
-    alert("Thank you for your purchase!");
-    localStorage.removeItem("cart"); // Kosongkan keranjang
-    window.location.href = "/payment"; // Arahkan ke halaman pembayaran
+    
+        // Fungsi untuk menghapus item dari keranjang
+        const removeButtons = document.querySelectorAll('.remove-item-btn');
+        removeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const itemIndex = this.getAttribute('data-index');
+                cartItems.splice(itemIndex, 1); // Menghapus item dari array cartItems
+    
+                // Menyimpan kembali data yang sudah diupdate ke Local Storage
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+    
+                // Memperbarui tampilan setelah penghapusan
+                location.reload(); // Muat ulang halaman untuk menampilkan data yang sudah diperbarui
+            });
+        });
     });
     </script>
 </body>

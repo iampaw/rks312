@@ -177,3 +177,40 @@ button:hover{
 	color: #2F4156;
 	font-family: 'MADE Sunflower', sans-serif;
 }
+
+.hidden {
+    display: none;
+}
+
+.popup {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    z-index: 1000;
+    text-align: center;
+    animation: fadeOut 3s forwards;
+}
+
+.popup-content {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* Animasi untuk efek memudar */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
