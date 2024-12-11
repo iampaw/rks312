@@ -34,16 +34,26 @@
                         <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
                     </svg>
                 </a>
-                <div id="toggle-bar" style="display: none;">
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li>
-                        {% if user.is_authenticated %}
-                          <a href="{% url 'logout' %}">Log Out</a>
-                        {% else %}
-                          <a href="{% url 'signup' %}">Sign Up</a>
-                        {% endif %}
-                      </li>
+                <<div id="toggle-bar" style="display: none;">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}" id="profile-link">Profile</a>
+                        <a href="{% url 'logout' %}">Log Out</a>
+                    {% else %}
+                        <a href="{% url 'signup' %}">Sign Up</a>
+                    {% endif %}
                 </div>
+                
+                <script>
+                    function toggleMenu() {
+                        var toggleBar = document.getElementById('toggle-bar');
+                        if (toggleBar.style.display === 'none') {
+                            toggleBar.style.display = 'block';
+                        } else {
+                            toggleBar.style.display = 'none';
+                        }
+                    }
+                </script>
+                 
                 <script>
                     function toggleBar() {
                     const toggleBar = document.getElementById('toggle-bar');
@@ -112,29 +122,23 @@
         </div>
         
         <script>
-            // Cek ketika tombol checkout diklik
-            document.querySelector('.checkout-btn').addEventListener('click', function (event) {
-                {% if user.is_authenticated %}  // Cek jika user sudah login
-                    const cartItems = document.querySelectorAll('.cart-item');  // Ganti dengan selector item keranjang yang tepat
-                    
-                    // Jika keranjang kosong, tampilkan pop-up
-                    if (cartItems.length === 0) {
-                        event.preventDefault();  // Prevent navigating to checkout
-                        
-                        // Tampilkan pop-up jika keranjang kosong
-                        const popup = document.getElementById('empty-cart-popup');
-                        popup.classList.add('show');  // Show pop-up dengan animasi
-                        
-                        // Menyembunyikan pop-up setelah 3 detik
-                        setTimeout(() => {
-                            popup.classList.remove('show');  // Hide pop-up setelah 3 detik
-                        }, 3000);
-                    }
-                {% else %}  // Jika user belum login, arahkan ke halaman signup
-                    window.location.href = "{% url 'signup' %}";  // Ganti dengan URL signup Anda
-                {% endif %}
+        document.querySelector('.checkout-btn').addEventListener('click', function (event) {
+            const isAuthenticated = {{ user.is_authenticated|yesno:"true,false" }};  // Convert Django boolean to JS
+            if (isAuthenticated) {
+                const cartItems = document.querySelectorAll('.cart-item'); // Adjust selector as needed
+                if (cartItems.length === 0) {
+                    event.preventDefault();
+                    const popup = document.getElementById('empty-cart-popup');
+                    popup.classList.add('show');
+                    setTimeout(() => {
+                        popup.classList.remove('show');
+                    }, 3000);
+                }
+            } else {
+                window.location.href = "{% url 'signup' %}";
+            }
             });
-        </script>
+</script>
         </div>
     </div>
     <div class="description">
@@ -154,6 +158,8 @@
  
     <div id="category-section" class="section-baru">
         <h4>Recommended</h4>
+        <p>most purchased dessert</p>
+        <h5>Exclusive to our shop, not available anywhere else!</h5>
     </div>
   
     <!-- Bagian makanan -->

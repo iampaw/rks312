@@ -18,6 +18,14 @@
             {% endfor %}
         </div>
         {% endif %}
+        <script>
+            $(document).ready(function() {
+    // Menampilkan pop-up jika ada pesan
+    if ($('#message-popup').length > 0) {
+        $('#message-popup').fadeIn(500).delay(3000).fadeOut(500);
+    }
+});
+        </script>
 
         <!-- Signup Form -->
         <div class="signup">

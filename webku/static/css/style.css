@@ -324,7 +324,7 @@ html {
         top: 260px; /* Atur jarak dari atas */
         left: 0;
         right: 0; /* Agar box melebar sesuai lebar navbar */
-        background-color: rgb(244, 219, 166); /* Warna background */
+        background-color: #F9F0DF; /* Warna background */
         border: 1px solid rgb(140, 75, 0); /* Border untuk box */
         border-radius: 5px; /* Menghaluskan sudut */
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Bayangan untuk efek 3D */
@@ -471,17 +471,17 @@ html {
 }
 
 #category-buttons button {
-    background: none; 
-    border: none; 
-    color: #000; 
-    font-size: 20px; 
-    font-family: 'MADE Sunflower', sans-serif; 
-    cursor: pointer; 
-    padding: 0; 
-    text-decoration: none; 
-    transition: color 0.3s ease; /* Animasi transisi untuk perubahan warna */
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 20px;
+    font-family: 'MADE Sunflower', sans-serif;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
     position: relative;
-    top: -780px;
+    top: -770px;
 }
 
 /* Gaya saat mouse diarahkan ke tombol */
@@ -530,7 +530,7 @@ html {
 }
 
 .section2-kedua h3 {
-    font-size: 50px;
+    font-size: 80px;
     color: #F9F0DF;
     margin-bottom: 30px;
     font-weight: bold;
@@ -592,7 +592,7 @@ html {
     text-align: left;
     line-height: 2.5;
     position: relative;
-    left: 200px;
+    left: 60px;
 }
 
 .pages h2 {
@@ -717,12 +717,14 @@ html {
 }
 
 #toggle-bar {
-    background-color: rgb(244, 219, 166); /* Gaya background untuk toggle bar */
-    padding: 10px; /* Beberapa padding */
-    border: 4px solid rgb(140, 75, 0); /* Garis batas */
+    background-color: #F9F0DF;
+    padding: 10px;
+    border: 4px solid #344660;
     border-radius: 15px;
-    position: absolute; /* Agar tidak mempengaruhi layout */
+    position: absolute;
+    line-height: 1.9;
 }
+
 #toggle-bar a {
     display: none;
     display: flex;
@@ -790,3 +792,4 @@ html {
     top: 20px;  /* Pop-up moves down to this position */
     transition: top 0.4s ease-in-out, opacity 0.4s ease, visibility 0s linear 0s;  /* Transition both top and opacity */
 }
+
