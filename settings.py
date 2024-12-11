@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'accounts',
     'rest_framework',
     
-    # Tambahkan aplikasi yang baru Anda buat
     'webku',
+    
+    
+    # Tambahkan aplikasi yang baru Anda buat
+    
 ]
 
 MIDDLEWARE = [

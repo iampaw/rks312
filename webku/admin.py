@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Makanan, makanan2, LoginHistory
+from .models import Makanan, Makanan2, LoginHistory
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -8,7 +8,7 @@ from .models import Profile
 
 admin.site.register(Profile)
 admin.site.register(Makanan)
-admin.site.register(makanan2)
+admin.site.register(Makanan2)
 
 
 class SignupForm(UserCreationForm):

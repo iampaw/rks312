@@ -38,11 +38,11 @@
                     
                     <div class="form-group">
                         <label for="full-name">Nama Lengkap</label>
-                        <input type="text" name="full_name" required>
+                        <input type="text" name="full_name" value="{{ address.full_name }}" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="tel" name="phone" required>
+                        <input type="tel" name="phone" value="{{ address.phone }}" required>
                     </div>
                     <script>
                         // Initialize the intl-tel-input library for Indonesia only
@@ -62,7 +62,7 @@
                     </script>
                     <div class="form-group">
                         <label for="province">Provinsi</label>
-                        <input type="text" name="province" id="province" list="provinces" required>
+                        <input type="text" name="province" id="province" list="provinces" value="{{ address.province }}" required>
                         <datalist id="provinces">
                             <!-- Daftar provinsi akan dimuat melalui JavaScript -->
                         </datalist>
@@ -83,11 +83,11 @@
                     </div>
                     <div class="form-group">
                         <label for="city">Kota</label>
-                        <input type="text" name="city" required>
+                        <input type="text" name="city" value="{{ address.city }}" required>
                     </div>
                     <div class="form-group">
                         <label for="postal-code">Kode Pos</label>
-                        <input type="text" name="postal_code" id="postal_code" list="postal_codes" required>
+                        <input type="text" name="postal_code" id="postal_code" list="postal_codes" value="{{ address.postal_code }}" required>
                         <datalist id="postal_codes">
                             <option value="29411">
                             <option value="29461">
@@ -100,27 +100,21 @@
                             <option value="29412">
                             <option value="29475">
                         </datalist>
-                        <script>
-                            const postalCodes = [
-                                "29411", "29461", "29427", "29465", "29425", "29422", "29444", "29430", "29412", "29475"
-                            ]; 
-                    
-                            const postalCodeInput = document.getElementById('postal_code');
-                            const postalCodeDatalist = document.getElementById('postal_codes');
-                            postalCodes.forEach(code => {
-                                const option = document.createElement('option');
-                                option.value = code;
-                                postalCodeDatalist.appendChild(option);
-                            });
-                        </script>
                     </div>
                     <div class="form-group">
                         <label for="housing">Alamat Rumah</label>
-                        <input type="text" name="housing_address" required>
+                        <input type="text" name="housing_address" value="{{ address.housing_address }}" required>
                     </div>
                     <div class="form-actions">
                         <button type="submit">Save Changes</button>
                     </div>
+
+                    {% if address.change_log %}
+                    <div class="change-log">
+                        <h3>Change Log</h3>
+                        <pre>{{ address.change_log }}</pre>
+                    </div>
+                    {% endif %}
                 </form>
             </div>
         </div>
