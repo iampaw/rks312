@@ -24,3 +24,8 @@ class AddressForm(forms.ModelForm):
         if user and Address.objects.filter(user=user).exists() and not self.instance.pk:
             raise forms.ValidationError('You already have an address saved.')
         return cleaned_data
+    
+    class AddressForm(forms.ModelForm):
+        class Meta:
+            model = Address
+            fields = ['full_name', 'phone', 'province', 'city', 'postal_code', 'housing_address']

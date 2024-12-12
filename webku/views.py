@@ -153,6 +153,12 @@ def profile_view(request):
 
 @login_required
 def address_view(request):
+    try:
+        # Mengambil alamat pengguna yang sudah ada
+        address = Address.objects.get(user=request.user)
+    except Address.DoesNotExist:
+        address = None
+
     if request.method == 'POST':
         # Mengambil data dari request.POST
         full_name = request.POST.get('full_name')
@@ -162,26 +168,38 @@ def address_view(request):
         postal_code = request.POST.get('postal_code')
         housing_address = request.POST.get('housing_address')
 
-        # Validasi data (bisa disesuaikan dengan kebutuhan)
+        # Validasi data
         if full_name and phone and province and city and postal_code and housing_address:
-            # Menyimpan data ke database
-            address = Address(
-                user=request.user,  # Pastikan menyimpan data dengan user yang sedang login
-                full_name=full_name,
-                phone=phone,
-                province=province,
-                city=city,
-                postal_code=postal_code,
-                housing_address=housing_address
-            )
-            address.save()
-            return redirect('address')  # Setelah berhasil simpan, redirect ke halaman yang sama
+            # Jika alamat sudah ada, update; jika tidak, buat baru
+            if address:
+                address.full_name = full_name
+                address.phone = phone
+                address.province = province
+                address.city = city
+                address.postal_code = postal_code
+                address.housing_address = housing_address
+                address.save()
+            else:
+                # Menyimpan data ke database jika belum ada
+                address = Address(
+                    user=request.user,
+                    full_name=full_name,
+                    phone=phone,
+                    province=province,
+                    city=city,
+                    postal_code=postal_code,
+                    housing_address=housing_address
+                )
+                address.save()
+
+            return redirect('address')  # Redirect ke halaman yang sama setelah simpan
         else:
-            # Jika ada data yang kosong, bisa menambahkan pesan error atau penanganan lainnya
             error_message = 'Please fill out all fields.'
-            return render(request, 'address.html', {'error_message': error_message})
+            return render(request, 'address.html', {'error_message': error_message, 'address': address})
+
     else:
-        return render(request, 'address.html')
+        # Jika bukan POST, tampilkan form dengan data alamat yang ada (jika ada)
+        return render(request, 'address.html', {'address': address})
     
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')

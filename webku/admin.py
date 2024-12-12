@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Makanan, Makanan2, LoginHistory
+from .models import Makanan, Makanan2, LoginHistory, Address
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -28,6 +28,10 @@ class LoginHistoryAdmin(admin.ModelAdmin):
     list_display = ('user', 'email', 'login_time', 'ip_address')
     search_fields = ('user__username', 'email')
     list_filter = ('login_time',)
+
+@admin.register(Address)
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ('user', 'full_name', 'phone', 'city', 'postal_code')
 
 admin.site.unregister(User)  # Unregister User default
 admin.site.register(User, CustomUserAdmin)
