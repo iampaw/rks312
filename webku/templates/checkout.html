@@ -1,107 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
-    <title>Shopping Cart</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  {% load static %}
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
 </head>
 <body>
-    <div class="cart-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Produk</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody id="cart-items">
-                <!-- Item 1 -->
-                
-                <div class="header">
-                    <button class="back-button" onclick="window.location.href='{% url 'home' %}'">
-                        &#8592; <!-- Panah ke kiri -->
-                    </button>
-                
-                    <h1>Your Details Order</h1>
-                </div>
-                
-                <script>
-                    function goToHome() {
-                        window.location.href = "home.html";
-                    }
-                </script>
-                    <h1>Your Details Order</h1>
-                </div>
-                <!-- Item 2 -->
-                <ul>
-                    {% for item in cart %}
-                        <li>
-                            <img src="{{ item.image }}" alt="{{ item.name }}" width="50">
-                            <p>{{ item.name }} - Rp {{ item.price }}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <a href="" class="checkout-btn">Proceed to Payment</a>
-
-                <!-- Item 3 -->
-                
-            </tbody>
-        </table>
+  <div class="cart-container">
+    <!-- Back Button Section -->
+    <div class="header">
+      <button class="back-button" onclick="window.location.href='{% url 'home' %}'">&#8592; Your Details Order</button>
     </div>
-    <script>
+
+    <div class="cart-header">
+      <div>Product</div>
+      <div>Unit Price</div>
+      <div>Quantity</div>
+      <div>Total Price</div>
+    </div>
+
+    <div id="cart-items">
+      <!-- Cart items will be dynamically added here -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="total">Total (0 Items):</div>
+      <div class="total-price">Rp.0.00</div>
+  </div>
+  <div class="button-container">
+    <button class="cancel">Cancel</button>
+    <button id="checkout-btn">Checkout</button>
+  </div>
+</div>
+
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-        const cartItemsContainer = document.getElementById("cart-items");
-    
+      const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartItemsContainer = document.getElementById("cart-items");
+      const totalAmountElement = document.querySelector(".cart-footer .total-price");
+      const selectAllCheckbox = document.getElementById("select-all");
+
+      function updateCart() {
+        cartItemsContainer.innerHTML = ""; // Clear the cart
         let totalAmount = 0;
-    
+        let totalItems = 0;
+
         cartItems.forEach((item, index) => {
-            const row = document.createElement("tr");
-            const itemTotal = item.price * item.quantity;
-    
-            row.innerHTML = `
-                <td>
-                    <img src="${item.image}" alt="${item.name}" width="50"> ${item.name}
-                </td>
-                <td>Rp ${item.price.toFixed(2)}</td>
-                <td>${item.quantity}</td>
-                <td>Rp ${itemTotal.toFixed(2)}</td>
-                <td><button class="remove-item-btn" data-index="${index}">Hapus</button></td>
-            `;
-    
-            cartItemsContainer.appendChild(row);
-    
-            totalAmount += itemTotal;
+          const itemTotal = item.price * item.quantity;
+          totalAmount += itemTotal;
+          totalItems += item.quantity;
+
+          const itemDiv = document.createElement("div");
+          itemDiv.classList.add("cart-item");
+          itemDiv.innerHTML = `
+            <div><input type="checkbox" class="select-item" data-index="${index}" ${item.selected ? 'checked' : ''}/></div>
+            <div class="product-info">
+              <img src="${item.image}" alt="${item.name}" width="50"/>
+              <div>${item.name}</div>
+            </div>
+            <div>Rp. ${item.price.toFixed(2)}</div>
+            <div class="quantity-control">
+              <button class="decrease-quantity" data-index="${index}">-</button>
+              <input type="text" value="${item.quantity}" readonly/>
+              <button class="increase-quantity" data-index="${index}">+</button>
+            </div>
+            <div class="total-price">Rp. ${itemTotal.toFixed(2)}</div>
+          `;
+
+          cartItemsContainer.appendChild(itemDiv);
         });
-    
-        // Menampilkan total pembayaran
-        const totalRow = document.createElement("tr");
-        totalRow.innerHTML = `
-            <td colspan="4" style="text-align: right;"><strong>Total:</strong></td>
-            <td><strong>Rp ${totalAmount.toFixed(2)}</strong></td>
-        `;
-        cartItemsContainer.appendChild(totalRow);
-    
-        // Fungsi untuk menghapus item dari keranjang
-        const removeButtons = document.querySelectorAll('.remove-item-btn');
-        removeButtons.forEach(button => {
+
+        totalAmountElement.innerText = `Rp. ${totalAmount.toFixed(2)}`;
+        document.querySelector(".cart-footer .total").innerText = `Total (${totalItems} Items):`;
+
+        addEventListeners();
+      }
+
+      function addEventListeners() {
+        document.querySelectorAll('.remove-item-btn').forEach(button => {
+          button.addEventListener('click', function() {
+            const itemIndex = this.getAttribute('data-index');
+            cartItems.splice(itemIndex, 1); // Remove item from array
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            updateCart();
+          });
+        });
+
+        document.querySelectorAll('.increase-quantity').forEach(button => {
+          button.addEventListener('click', function() {
+            const itemIndex = this.getAttribute('data-index');
+            cartItems[itemIndex].quantity += 1; // Increase quantity
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            updateCart();
+          });
+        });
+
+        document.querySelectorAll('.decrease-quantity').forEach(button => {
             button.addEventListener('click', function() {
                 const itemIndex = this.getAttribute('data-index');
-                cartItems.splice(itemIndex, 1); // Menghapus item dari array cartItems
-    
-                // Menyimpan kembali data yang sudah diupdate ke Local Storage
-                localStorage.setItem('cart', JSON.stringify(cartItems));
-    
-                // Memperbarui tampilan setelah penghapusan
-                location.reload(); // Muat ulang halaman untuk menampilkan data yang sudah diperbarui
+                if (cartItems[itemIndex].quantity > 1) {
+                    cartItems[itemIndex].quantity -= 1; // Decrease quantity
+                    } else {
+                    // If quantity is 1, remove the item
+                    cartItems.splice(itemIndex, 1); // Remove item from array
+                    }
+                    localStorage.setItem('cart', JSON.stringify(cartItems));
+                    updateCart();
+                });
             });
+
+        document.querySelectorAll('.select-item').forEach(checkbox => {
+          checkbox.addEventListener('change', function() {
+            const itemIndex = this.getAttribute('data-index');
+            cartItems[itemIndex].selected = this.checked; // Mark as selected or unselected
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+          });
         });
+
+        // Select/deselect all
+        selectAllCheckbox.addEventListener('change', function() {
+          const isChecked = this.checked;
+          cartItems.forEach((item, index) => {
+            item.selected = isChecked;
+          });
+          localStorage.setItem('cart', JSON.stringify(cartItems));
+          updateCart();
+        });
+      }
+
+      updateCart(); // Initial rendering of cart
     });
-    </script>
+  </script>
 </body>
 </html>

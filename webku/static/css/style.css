@@ -348,7 +348,7 @@ html {
     background-size: 20px;
     background-color: rgba(255, 255, 255, 0.58);
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 20px;
     max-width: 300px;
@@ -665,22 +665,23 @@ html {
 /*************** CSS *********************/
 /* Untuk nama makanan */
 .makanan-name {
-    font-size: 24px; /* Ukuran font besar agar menonjol */
-    font-weight: bold; /* Membuat teks lebih tebal */
-    color: #333; /* Warna teks gelap untuk kontras */
-    margin-bottom: 5px; /* Jarak bawah dengan elemen berikutnya */
-    font-family: 'Arial', sans-serif; /* Font modern */
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 5px;
+    font-family: "Luxurious Roman", serif;
+    position: relative;
+    left: -10px;
 }
 
 /* Untuk harga makanan */
 .makanan-price {
     font-size: 18px;
     font-weight: normal;
-    color: #777;
+    color: #E32700;
     margin: 0;
-    font-family: 'Arial', sans-serif;
     position: relative;
-    left: -50px;
+    left: -62px;
+    font-family: "Luxurious Roman", serif;
 }
 
 .profile-container {
