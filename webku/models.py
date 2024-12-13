@@ -22,6 +22,7 @@ class Makanan2(models.Model):
         ('Ice Cream', 'Ice Cream'),
         ('Maccarone', 'Maccarone'),
         ('Cookies', 'Cookies'),
+        ('Short Cake', 'Short Cake'),
     
 
     ])

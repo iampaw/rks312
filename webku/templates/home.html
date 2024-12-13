@@ -22,8 +22,10 @@
                 <li><a href="#category-section3">About</a></li>
                 <li><a href="#category-section">Best Seller</a></li>
                 <li><a href="#category-section2">Category</a></li>
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search..">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search..">
+                </div>
             </ul>
             <div class="menu-toggle" id="mobile-menu">
                 <span class="bar"></span>
@@ -204,7 +206,6 @@
     <div id="category-section2" class="section2-kedua">
         <h3>Menu</h3>
     </div>
-    
 <script>
     function filterCategory(category) {
         // Get all items
@@ -227,6 +228,7 @@
     <button onclick="filterCategory('Ice Cream')">Ice Cream</button>
     <button onclick="filterCategory('Maccarone')">Maccarone</button>
     <button onclick="filterCategory('Cookies')">Cookies</button>
+    <button onclick="filterCategory('Short Cake')">Short Cake</button>
 
 </div>
 <div class="makanan2-category">
@@ -238,6 +240,30 @@
         <button class="btn-add-to-card">Add to Cart</button>
     </div>
     {% endfor %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const makanan2List = document.querySelectorAll('.makanan2'); // Change to .makanan2
+    
+    // Event listener untuk input pencarian
+    searchInput.addEventListener('input', function() {
+        const query = searchInput.value.toLowerCase();
+    
+        // Mencari makanan yang sesuai dengan input pengguna
+        makanan2List.forEach(makanan2 => {
+            const makananName = makanan2.querySelector('.makanan-name').textContent.toLowerCase();
+    
+            if (makananName.includes(query)) {
+                // Menggulung halaman ke posisi makanan yang ditemukan
+                makanan2.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                makanan2.style.border = '2px solid rgb(103, 60, 0)'; // Highlight makanan
+            } else {
+                makanan2.style.border = 'none'; // Menghapus highlight jika tidak cocok
+            }
+        });
+    });
+});
+    </script>
 </div>
 <div id="category-section3" class="section3-ketiga">
     <h3>The Sweetery</h3>
