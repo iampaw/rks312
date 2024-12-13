@@ -262,8 +262,8 @@ html {
     padding: 20px;
     gap: 10px;
     flex-direction: column;
+    color: #344660;
 }
-
 .cart-footer {
     padding: 20px;
     display: flex;
@@ -462,12 +462,14 @@ html {
 
 /****************Tombol category**********/
 #category-buttons {
-    display: flex; 
-    justify-content: center; 
-    gap: 80px; 
+    display: flex;
+    justify-content: center;
+    gap: 80px;
     margin-top: -20px;
     margin-bottom: 50px;
-
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 #category-buttons button {

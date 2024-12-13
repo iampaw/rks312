@@ -119,7 +119,7 @@ body {
 }
   
   .select-item:checked {
-    accent-color: #2ecc71; /* Warna saat checkbox dicentang */
+    accent-color: #2c3e50; /* Warna saat checkbox dicentang */
   }
 
 

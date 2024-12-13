@@ -17,7 +17,7 @@
       <button class="back-button" onclick="window.location.href='{% url 'home' %}'">&#8592; Your Details Order</button>
     </div>
 
-    <div class="cart-header">
+    <div class="cart-header"> 
       <div>Product</div>
       <div>Unit Price</div>
       <div>Quantity</div>
@@ -28,6 +28,8 @@
       <!-- Cart items will be dynamically added here -->
     </div>
     <div class="cart-footer">
+      <div class="total"></div>
+      <div class="total-price"></div>
   </div>
   <div class="button-container">
     <button class="cancel">Cancel</button>
@@ -37,101 +39,93 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-      const cartItemsContainer = document.getElementById("cart-items");
-      const totalAmountElement = document.querySelector(".cart-footer .total-price");
-      const selectAllCheckbox = document.getElementById("select-all");
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartItemsContainer = document.getElementById("cart-items");
+  const totalAmountElement = document.querySelector(".cart-footer .total-price");
+  const totalItemsElement = document.querySelector(".cart-footer .total");
+  const selectAllCheckbox = document.getElementById("select-all");
 
-      function updateCart() {
-        cartItemsContainer.innerHTML = ""; // Clear the cart
-        let totalAmount = 0;
-        let totalItems = 0;
+  function updateCart() {
+    cartItemsContainer.innerHTML = ""; // Clear the cart
+    let totalAmount = 0;
+    let totalItems = 0;
 
-        cartItems.forEach((item, index) => {
-          const itemTotal = item.price * item.quantity;
-          totalAmount += itemTotal;
-          totalItems += item.quantity;
+    cartItems.forEach((item, index) => {
+      const itemTotal = item.price * item.quantity;
+      totalAmount += item.selected ? itemTotal : 0; // Only add to total if selected
+      totalItems += item.selected ? item.quantity : 0; // Only count quantity if selected
 
-          const itemDiv = document.createElement("div");
-          itemDiv.classList.add("cart-item");
-          itemDiv.innerHTML = `
-            <div><input type="checkbox" class="select-item" data-index="${index}" ${item.selected ? 'checked' : ''}/></div>
-            <div class="product-info">
-              <img src="${item.image}" alt="${item.name}" width="50"/>
-              <div>${item.name}</div>
-            </div>
-            <div>Rp. ${item.price.toFixed(2)}</div>
-            <div class="quantity-control">
-              <button class="decrease-quantity" data-index="${index}">-</button>
-              <input type="text" value="${item.quantity}" readonly/>
-              <button class="increase-quantity" data-index="${index}">+</button>
-            </div>
-            <div class="total-price">Rp. ${itemTotal.toFixed(2)}</div>
-          `;
+      const itemDiv = document.createElement("div");
+      itemDiv.classList.add("cart-item");
+      itemDiv.innerHTML = `
+        <div><input type="checkbox" class="select-item" data-index="${index}" ${item.selected ? 'checked' : ''}/></div>
+        <div class="product-info">
+          <img src="${item.image}" alt="${item.name}" width="50"/>
+          <div>${item.name}</div>
+        </div>
+        <div>Rp. ${item.price.toFixed(2)}</div>
+        <div class="quantity-control">
+          <button class="decrease-quantity" data-index="${index}">-</button>
+          <input type="text" value="${item.quantity}" readonly/>
+          <button class="increase-quantity" data-index="${index}">+</button>
+        </div>
+        <div class="total-price">Rp. ${itemTotal.toFixed(2)}</div>
+      `;
 
-          cartItemsContainer.appendChild(itemDiv);
-        });
-
-        totalAmountElement.innerText = `Rp. ${totalAmount.toFixed(2)}`;
-        document.querySelector(".cart-footer .total").innerText = `Total (${totalItems} Items):`;
-
-        addEventListeners();
-      }
-
-      function addEventListeners() {
-        document.querySelectorAll('.remove-item-btn').forEach(button => {
-          button.addEventListener('click', function() {
-            const itemIndex = this.getAttribute('data-index');
-            cartItems.splice(itemIndex, 1); // Remove item from array
-            localStorage.setItem('cart', JSON.stringify(cartItems));
-            updateCart();
-          });
-        });
-
-        document.querySelectorAll('.increase-quantity').forEach(button => {
-          button.addEventListener('click', function() {
-            const itemIndex = this.getAttribute('data-index');
-            cartItems[itemIndex].quantity += 1; // Increase quantity
-            localStorage.setItem('cart', JSON.stringify(cartItems));
-            updateCart();
-          });
-        });
-
-        document.querySelectorAll('.decrease-quantity').forEach(button => {
-            button.addEventListener('click', function() {
-                const itemIndex = this.getAttribute('data-index');
-                if (cartItems[itemIndex].quantity > 1) {
-                    cartItems[itemIndex].quantity -= 1; // Decrease quantity
-                    } else {
-                    // If quantity is 1, remove the item
-                    cartItems.splice(itemIndex, 1); // Remove item from array
-                    }
-                    localStorage.setItem('cart', JSON.stringify(cartItems));
-                    updateCart();
-                });
-            });
-
-        document.querySelectorAll('.select-item').forEach(checkbox => {
-          checkbox.addEventListener('change', function() {
-            const itemIndex = this.getAttribute('data-index');
-            cartItems[itemIndex].selected = this.checked; // Mark as selected or unselected
-            localStorage.setItem('cart', JSON.stringify(cartItems));
-          });
-        });
-
-        // Select/deselect all
-        selectAllCheckbox.addEventListener('change', function() {
-          const isChecked = this.checked;
-          cartItems.forEach((item, index) => {
-            item.selected = isChecked;
-          });
-          localStorage.setItem('cart', JSON.stringify(cartItems));
-          updateCart();
-        });
-      }
-
-      updateCart(); // Initial rendering of cart
+      cartItemsContainer.appendChild(itemDiv);
     });
+
+    totalAmountElement.innerText = `Rp. ${totalAmount.toFixed(2)}`;
+    totalItemsElement.innerText = `Total (${totalItems} Items):`;
+
+    addEventListeners();
+  }
+
+  function addEventListeners() {
+    document.querySelectorAll('.increase-quantity').forEach(button => {
+      button.addEventListener('click', function() {
+        const itemIndex = this.getAttribute('data-index');
+        cartItems[itemIndex].quantity += 1; // Increase quantity
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        updateCart();
+      });
+    });
+
+    document.querySelectorAll('.decrease-quantity').forEach(button => {
+      button.addEventListener('click', function() {
+        const itemIndex = this.getAttribute('data-index');
+        if (cartItems[itemIndex].quantity > 1) {
+          cartItems[itemIndex].quantity -= 1; // Decrease quantity
+        } else {
+          cartItems.splice(itemIndex, 1); // Remove item if quantity is 1
+        }
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        updateCart();
+      });
+    });
+
+    document.querySelectorAll('.select-item').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const itemIndex = this.getAttribute('data-index');
+        cartItems[itemIndex].selected = this.checked; // Mark as selected or unselected
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        updateCart(); // Recalculate totals after selection change
+      });
+    });
+
+    selectAllCheckbox.addEventListener('change', function() {
+      const isChecked = this.checked;
+      cartItems.forEach((item) => {
+        item.selected = isChecked;
+      });
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+      updateCart();
+    });
+  }
+
+  updateCart(); // Initial rendering of cart
+});
+
   </script>
 </body>
 </html>

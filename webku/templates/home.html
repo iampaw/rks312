@@ -287,9 +287,9 @@
     <h2>Pages</h2>
     <ul>
         <li><a href="#">> Home</a></li>
-        <li><a href="#">> Best Seller</a></li>
-        <li><a href="#">> Menu</a></li>
-        <li><a href="#">> About</a></li>
+        <li><a href="#category-section">> Best Seller</a></li>
+        <li><a href="#category-section2">> Category</a></li>
+        <li><a href="#category-section3">> About</a></li>   
     </ul>
 </div>
 <div class="contact">
@@ -445,8 +445,12 @@ function decreaseQuantity(event) {
             minimumFractionDigits: 0
         }).format(unitPrice * quantity);
     } else {
-        removeCartItem(cartItem);
+        // Item tetap ada di keranjang meskipun jumlahnya 1
+        alert("Jumlah minimal adalah 1");
     }
+
+    // Update keranjang di localStorage untuk mencerminkan jumlah yang terbaru
+    updateCartInLocalStorage();
 }
 
 // Fungsi untuk menambahkan item ke keranjang
@@ -496,14 +500,16 @@ function addToCart(event) {
             </div>
         `;
 
-            const increaseButton = cartItem.querySelector(".increase-btn");
-            const decreaseButton = cartItem.querySelector(".decrease-btn");
-            increaseButton.addEventListener("click", increaseQuantity);
-            decreaseButton.addEventListener("click", decreaseQuantity);
+        const increaseButton = cartItem.querySelector(".increase-btn");
+        const decreaseButton = cartItem.querySelector(".decrease-btn");
+        increaseButton.addEventListener("click", increaseQuantity);
+        decreaseButton.addEventListener("click", decreaseQuantity);
 
-            cartItemsContainer.appendChild(cartItem);
-        }
-        const existingItem = cart.find(item => item.name === itemName);
+        cartItemsContainer.appendChild(cartItem);
+    }
+    
+    // Update keranjang di localStorage
+    const existingItem = cart.find(item => item.name === itemName);
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
@@ -514,8 +520,10 @@ function addToCart(event) {
             quantity: 1
         });
     }
+
+    // Simpan data keranjang yang diperbarui di localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
-    }
+}
 
     // Event listener untuk tombol "Add to Cart" dari kedua kategori
     addToCartButtons.forEach(button => {
